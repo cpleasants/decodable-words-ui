@@ -5,10 +5,10 @@ import Letters from './Letters'
 import LetterCombinations from './LetterCombinations'
 import OtherParameters from './OtherParameters'
 import SightWords from './SightWords'
-import ReviewAndSubmit from './ReviewAndSubmit';
-import ResponseDisplay from './ResponseDisplay'
+import ReviewAndSubmit from '../common/ReviewAndSubmit';
+import ResponseDisplay from '../common/ResponseDisplay'
 
-const Selection = () => {
+const ManualSelectionsContainer = () => {
     const [page, setPage] = useState(0);
     const [formData, setFormData] = useState({})
     const [apiResponse, setApiResponse] = useState(null);
@@ -74,4 +74,4 @@ const Selection = () => {
     }
 }
 
-export default Selection;
+export default ManualSelectionsContainer;

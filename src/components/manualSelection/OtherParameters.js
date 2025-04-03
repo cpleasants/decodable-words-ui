@@ -1,4 +1,4 @@
-import CheckboxGroup from "./common/CheckboxGroup/CheckboxGroup"
+import CheckboxGroup from "../common/CheckboxGroup/CheckboxGroup"
 
 const OtherParameters = ({nextPage, prevPage, handleUpdate, formData}) => {
     return (

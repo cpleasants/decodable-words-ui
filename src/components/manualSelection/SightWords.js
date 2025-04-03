@@ -1,16 +1,15 @@
-import CheckboxGroupWithToggle from './common/CheckboxGroup/CheckboxGroupWithToggle';
-import letterSets from '../constants/letterSets';
+import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithToggle';
+import sightWordSets from '../../constants/sightWordsSets'
 
-const Letters = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
+const SightWords = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
     return (
         <div>
-            <h2>Letter Sets</h2>
-            {Object.keys(letterSets).map(groupName => (
+            <h2>Sight Words</h2>
+            {Object.keys(sightWordSets).map(groupName => (
                 <div key={groupName}>
                     <CheckboxGroupWithToggle
                         groupName={groupName}
-                        itemList={letterSets[groupName]}
-                        idList={letterSets[groupName].map(l => `l_${l}`)}
+                        itemList={sightWordSets[groupName]}
                         handleUpdate={handleUpdate}
                         formData={formData}
                         setFormData={setFormData}
@@ -25,4 +24,4 @@ const Letters = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
     )
 }
 
-export default Letters;
+export default SightWords;

@@ -1,5 +1,5 @@
-import phonemes from "../constants/phonemes";
-import sightWordSets from "../constants/sightWordsSets";
+import phonemes from "../../constants/phonemes";
+import sightWordSets from "../../constants/sightWordsSets";
 
 const ReviewAndSubmit = ({formData, restart, handleApiResponse}) => {
 
