@@ -1,6 +1,5 @@
 import React from 'react';
-// import ReviewAndSubmit from './components/ReviewAndSubmit';
-import Selection from './components/Selections';
+import ManualSelectionsContainer from './components/manualSelection/ManualSelectionsContainer';
 
 function App() {
   
@@ -8,7 +7,7 @@ function App() {
   return (
     <div>
       <h1>Word Generator</h1>
-      <Selection/>
+      <ManualSelectionsContainer/>
     </div>
 )
 }
