@@ -10,6 +10,8 @@ const letterCombinationSets = {
     "Suffixes 2": ['-ing', '-ang', '-ong', '-ung', '-ank', '-ink', '-onk', '-unk'],
     "Suffixes 3": ['-ild', '-old', '-ind', '-olt', '-ost'],
 
+    "Vowel Teams": ["ee", "ea", "ai", "ay", "oa", "ow", "igh"],
+
     "Other": ['wr-', 'kn-', 'ph-', 'gh-', 'gn-', '-mb', '-tch', '-dge']
 };
 
