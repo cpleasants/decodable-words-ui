@@ -50,6 +50,61 @@ code {
   color: white;
   border-color: #007bff;
 }
+
+/* Vertical Checkbox Group Styles */
+.checkbox-group-vertical {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px;
+}
+
+
+.checkbox-group-vertical label {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #f8f8f8;
+  transition: background 0.3s ease;
+  word-break: break-word; /* optional: handle long words */
+  line-height: 1
+}
+
+/* Hide default checkbox */
+.checkbox-group-vertical input[type="checkbox"] {
+  display: none;
+}
+
+/* Hover effect */
+.checkbox-group-vertical label:hover {
+  background: #e0e0e0;
+}
+
+/* Styles for checked checkboxes in vertical group */
+.checkbox-group-vertical input[type="checkbox"]:checked + label {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.checkbox-group-vertical h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.checkbox-group-vertical p {
+  margin-top: 0.0000001;
+  margin-bottom: 0;
+}
+
+
+
+
+/* Response Styles */
 .response {
   display: flex; 
   flex-wrap: wrap; 
@@ -71,6 +126,8 @@ code {
   background-color: #e9ecef;
   
 }
+
+/* Button Styles */
 
 button {
   display: inline-block;
@@ -103,18 +160,18 @@ button:disabled {
   opacity: 0.6;
 }
 
-
 button + button {
   margin-left: 10px; /* Adds space only between adjacent buttons */
 }
 
+/* Footer for more consistency */
 .button-footer {
   position: fixed;
-  bottom: 0; /* Adjust as needed */
+  bottom: 0;
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: center; /* Or use 'space-between' if you want them spread */
+  justify-content: center; 
   padding: 10px;
   background: white; /* Optional, to prevent overlap */
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
