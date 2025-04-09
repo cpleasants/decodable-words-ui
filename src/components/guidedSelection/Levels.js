@@ -35,7 +35,7 @@ const Levels = ({level, setLevel, formData, setFormData, nextPage}) => {
         7: [...letterCombinationSets["Suffixes 1"], ...sightWordSets["Kinder"]],
         8: letterCombinationSets["Suffixes 2"],
         9: letterCombinationSets["Blends 3"],
-        10: ["cvce"],
+        10: ["cvce", "allow_silent_e"],
         11: letterCombinationSets["Suffixes 3"],
         12: [...letterCombinationSets["Blends 4"], ...letterCombinationSets["Vowel Teams"]],
         13: letterCombinationSets["Other"],
