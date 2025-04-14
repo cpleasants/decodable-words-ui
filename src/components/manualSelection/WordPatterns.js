@@ -1,4 +1,6 @@
 import CheckboxGroup from "../common/CheckboxGroup/CheckboxGroup";
+import { Button } from '@mui/material';
+import FloatingFooter from '../common/styles/floatingFooter';
 
 const WordPatterns = ({nextPage, handleUpdate, formData}) => {
     
@@ -15,9 +17,9 @@ const WordPatterns = ({nextPage, handleUpdate, formData}) => {
             handleUpdate={handleUpdate}
             formData={formData}
             />
-            <div className='button-footer'>
-                <button onClick={nextPage}>Next</button>
-            </div>
+            <FloatingFooter>
+              <Button  variant="contained" onClick={nextPage}>Next</Button>
+            </FloatingFooter>
         </div>
     )
 }

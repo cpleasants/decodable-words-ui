@@ -1,5 +1,7 @@
 import phonemes from "../../constants/phonemes";
 import sightWordSets from "../../constants/sightWordsSets";
+import { Button } from '@mui/material';
+import FloatingFooter from './styles/floatingFooter';
 
 const ReviewAndSubmit = ({formData, restart, handleApiResponse}) => {
 
@@ -58,14 +60,14 @@ const ReviewAndSubmit = ({formData, restart, handleApiResponse}) => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div>
             <h2>Review</h2>
             <p>{JSON.stringify(data)}</p>
-            <div className = "button-footer">
-                <button onClick={restart}>Edit</button>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
+            <FloatingFooter>
+              <Button  variant="contained" onClick={restart}>Edit</Button>
+              <Button  variant="contained" onClick={handleSubmit}>Submit</Button>
+            </FloatingFooter>
+        </div>
         
       
     )

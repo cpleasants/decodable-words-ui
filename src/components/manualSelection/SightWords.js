@@ -1,5 +1,7 @@
 import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithToggle';
 import sightWordSets from '../../constants/sightWordsSets'
+import { Button } from '@mui/material';
+import FloatingFooter from '../common/styles/floatingFooter';
 
 const SightWords = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
     return (
@@ -16,10 +18,10 @@ const SightWords = ({nextPage, prevPage, handleUpdate, formData, setFormData}) =
                     />
                 </div>
             ))}
-            <div className='button-footer'>
-                <button onClick={prevPage}>Previous</button>
-                <button onClick={nextPage}>Next</button>
-            </div>
+            <FloatingFooter>
+              <Button  variant="contained" onClick={prevPage}>Previous</Button>
+              <Button  variant="contained" onClick={nextPage}>Next</Button>
+            </FloatingFooter>
         </div>
     )
 }

@@ -1,4 +1,6 @@
 import React from 'react'
+import { Button } from '@mui/material';
+import FloatingFooter from '../common/styles/floatingFooter'
 import letterSets from '../../constants/letterSets'
 import letterCombinationSets from '../../constants/letterCombinationSets';
 import sightWordSets from '../../constants/sightWordsSets';
@@ -17,6 +19,7 @@ import Level12 from './Level12';
 import Level13 from './Level13';
 import Level14 from './Level14';
 import Level15 from './Level15';
+
 
 const Levels = ({level, setLevel, formData, setFormData, nextPage}) => {
 
@@ -79,9 +82,9 @@ const Levels = ({level, setLevel, formData, setFormData, nextPage}) => {
                 <Level14 level={level} handleUpdate={handleUpdate}/>
                 <Level15 level={level} handleUpdate={handleUpdate}/>
             </div>
-            <div className='button-footer'>
-                <button onClick={handleSubmit}>Submit</button>
-            </div>
+            <FloatingFooter>
+                <Button  variant="contained" onClick={handleSubmit}>Review</Button>
+            </FloatingFooter>
         </div>
         );
 };

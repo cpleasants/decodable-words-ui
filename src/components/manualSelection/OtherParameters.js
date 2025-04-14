@@ -1,4 +1,6 @@
 import CheckboxGroup from "../common/CheckboxGroup/CheckboxGroup"
+import { Button } from '@mui/material';
+import FloatingFooter from '../common/styles/floatingFooter';
 
 const OtherParameters = ({nextPage, prevPage, handleUpdate, formData}) => {
     return (
@@ -10,10 +12,10 @@ const OtherParameters = ({nextPage, prevPage, handleUpdate, formData}) => {
                 handleUpdate={handleUpdate}
                 formData={formData}
             />
-            <div className='button-footer'>
-                <button onClick={prevPage}>Previous</button>
-                <button onClick={nextPage}>Next</button>
-            </div>
+            <FloatingFooter>
+              <Button  variant="contained" onClick={prevPage}>Previous</Button>
+              <Button  variant="contained" onClick={nextPage}>Next</Button>
+            </FloatingFooter>
         </div>
     )
 }
