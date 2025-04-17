@@ -17,12 +17,12 @@ const ManualSelectionsContainer = () => {
     const prevPage = () => setPage(page - 1)
     const restart = () => setPage(0)
 
-    const handleUpdate = (event) => {
-        const { name, value, checked, type } = event.target;
-        setFormData(prev => ({
-            ...prev, [name] : type === 'checkbox' ? checked : value
-        }));
-    }
+    const handleUpdate = (name) => (event, newValues) => {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: newValues,
+      }));
+    };
 
     const handleApiResponse = (response) => {
         setPage(page + 1)

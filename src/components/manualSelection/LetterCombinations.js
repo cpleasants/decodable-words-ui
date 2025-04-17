@@ -1,14 +1,14 @@
 import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithToggle';
 import letterCombinationSets from '../../constants/letterCombinationSets';
-import { Button } from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter'
 
 const LetterCombinations = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
     return (
-        <div>
-            <h2>Letter Combinations</h2>
+        <Box>
+            <Typography variant='h2'>Letter Combinations</Typography>
             {Object.keys(letterCombinationSets).map(groupName => (
-                <div key={groupName}>
+                <Box key={groupName}>
                     <CheckboxGroupWithToggle
                         groupName={groupName}
                         itemList={letterCombinationSets[groupName]}
@@ -16,13 +16,13 @@ const LetterCombinations = ({nextPage, prevPage, handleUpdate, formData, setForm
                         formData={formData}
                         setFormData={setFormData}
                     />
-                </div>
+                </Box>
             ))}
             <FloatingFooter>
               <Button  variant="contained" onClick={prevPage}>Previous</Button>
               <Button  variant="contained" onClick={nextPage}>Next</Button>
             </FloatingFooter>
-        </div>
+        </Box>
     )
 }
 

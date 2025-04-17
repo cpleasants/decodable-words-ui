@@ -1,14 +1,14 @@
 import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithToggle';
 import sightWordSets from '../../constants/sightWordsSets'
-import { Button } from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter';
 
 const SightWords = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
     return (
-        <div>
-            <h2>Sight Words</h2>
+        <Box>
+            <Typography variant='h2'>Sight Words</Typography>
             {Object.keys(sightWordSets).map(groupName => (
-                <div key={groupName}>
+                <Box key={groupName}>
                     <CheckboxGroupWithToggle
                         groupName={groupName}
                         itemList={sightWordSets[groupName]}
@@ -16,13 +16,13 @@ const SightWords = ({nextPage, prevPage, handleUpdate, formData, setFormData}) =
                         formData={formData}
                         setFormData={setFormData}
                     />
-                </div>
+                </Box>
             ))}
             <FloatingFooter>
               <Button  variant="contained" onClick={prevPage}>Previous</Button>
               <Button  variant="contained" onClick={nextPage}>Next</Button>
             </FloatingFooter>
-        </div>
+        </Box>
     )
 }
 

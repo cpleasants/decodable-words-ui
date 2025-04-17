@@ -1,4 +1,5 @@
 import CheckboxGroup from "./CheckboxGroup";
+import { Switch, Card, CardActions, FormControlLabel, FormGroup } from "@mui/material";
 
 const CheckboxGroupWithToggle = ({ itemList, idList, groupName, handleUpdate, formData, setFormData }) => {
     if (!idList) {
@@ -8,33 +9,36 @@ const CheckboxGroupWithToggle = ({ itemList, idList, groupName, handleUpdate, fo
     if (itemList.length !== idList.length) {
         throw new Error("itemList and idList must be the same length");
     }
+
+    const selectedIds = formData[groupName] || [];
+    const allSelected = idList.every(id => selectedIds.includes(id));
+
     
     const handleToggleCheckboxGroup = (event) => {
-        const { checked } = event.target;
-        setFormData(prev => ({
-            ...prev, 
-            ...Object.fromEntries(idList.map(l => [l, checked]))
-        }))
+      const nowAllSelected = !allSelected
+
+      setFormData(prev => ({
+        ...prev,
+        [groupName]: nowAllSelected ? idList : null
+      }));
+
     };
-    
+
 
     return (
-        <div>
-            {/* Checkbox to toggle all letters in the group */}
-            <input
-                type="checkbox"
-                id={`checkbox-for-${groupName}`}
-                onChange={handleToggleCheckboxGroup}
-                checked={idList.every(l => formData[l] === true)}
-            />
-            <label htmlFor={`checkbox-for-${groupName}`}>{`${groupName}`}</label>
-            <CheckboxGroup 
-                itemList={itemList} 
-                idList={idList} 
-                handleUpdate={handleUpdate}
-                formData={formData}
-            />
-        </div>
+      <FormGroup>
+        <FormControlLabel
+          control={<Switch onChange={handleToggleCheckboxGroup} checked={allSelected} />}
+          label={`${groupName}`}
+        />
+          <CheckboxGroup 
+            itemList={itemList} 
+            idList={idList} 
+            handleUpdate={handleUpdate}
+            formData={formData}
+            groupName={groupName}
+          />
+      </FormGroup>
     )
 }
 

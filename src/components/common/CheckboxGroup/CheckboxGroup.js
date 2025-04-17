@@ -1,4 +1,7 @@
-const CheckboxGroup = ({ itemList, idList, handleUpdate, formData }) => {
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+
+const CheckboxGroup = ({ itemList, idList, handleUpdate, formData, groupName }) => {
     // if only an itemList is provided, automatically generate idList
     if (!idList) {
         idList = itemList;
@@ -8,21 +11,22 @@ const CheckboxGroup = ({ itemList, idList, handleUpdate, formData }) => {
         throw new Error("itemList and idList must be the same length");
     }
 
+
     return (
-        <div className="checkbox-group">
-            {idList.map((id, idx) =>  (
-                <div key={id}>
-                    <input
-                        type="checkbox"
-                        id={id}
-                        name={id}
-                        checked={formData[id] || false}
-                        onChange={handleUpdate}
-                    />
-                    <label htmlFor={idList[idx]}>{itemList[idx]}</label>
-                </div>
-            ))}
-        </div>
+      <ToggleButtonGroup
+        value={formData[groupName]}
+        onChange={handleUpdate(groupName)}
+        sx = {{ flexWrap:"wrap" }}
+      >
+        {idList.map((id, idx) =>  (
+          <ToggleButton
+            key={id}
+            value={id}
+            sx={{ textTransform: 'none' }}
+          >{itemList[idx]}
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
     )
 }
 

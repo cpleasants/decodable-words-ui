@@ -16,6 +16,7 @@ const WordPatterns = ({nextPage, handleUpdate, formData}) => {
             idList={["vc", "cvc", "cvce", "cvcvc"]}
             handleUpdate={handleUpdate}
             formData={formData}
+            groupName="word_patterns"
             />
             <FloatingFooter>
               <Button  variant="contained" onClick={nextPage}>Next</Button>
