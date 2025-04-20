@@ -1,7 +1,7 @@
 import phonemes from "../../constants/phonemes";
 import sightWordSets from "../../constants/sightWordsSets";
 import { Button } from '@mui/material';
-import FloatingFooter from './styles/floatingFooter';
+import FloatingFooter from './styles/floatingFooter.style';
 
 const ReviewAndSubmit = ({formData, restart, handleApiResponse}) => {
 

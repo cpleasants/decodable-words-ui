@@ -1,7 +1,7 @@
 import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithToggle';
 import letterCombinationSets from '../../constants/letterCombinationSets';
 import { Button, Box, Typography } from '@mui/material';
-import FloatingFooter from '../common/styles/floatingFooter'
+import FloatingFooter from '../common/styles/floatingFooter.style'
 
 const LetterCombinations = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
     return (

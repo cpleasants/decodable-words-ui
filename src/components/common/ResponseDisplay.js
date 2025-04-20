@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@mui/material';
-import FloatingFooter from './styles/floatingFooter';
+import FloatingFooter from './styles/floatingFooter.style';
 
 const ResponseDisplay = ({ apiResponse, restart }) => {
   return (

@@ -1,5 +1,5 @@
 import CheckboxGroup from "./CheckboxGroup";
-import { Switch, Card, CardActions, FormControlLabel, FormGroup } from "@mui/material";
+import { Switch, FormControlLabel, FormGroup } from "@mui/material";
 
 const CheckboxGroupWithToggle = ({ itemList, idList, groupName, handleUpdate, formData, setFormData }) => {
     if (!idList) {

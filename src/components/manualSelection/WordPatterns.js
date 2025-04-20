@@ -1,6 +1,6 @@
 import CheckboxGroup from "../common/CheckboxGroup/CheckboxGroup";
 import { Button } from '@mui/material';
-import FloatingFooter from '../common/styles/floatingFooter';
+import FloatingFooter from '../common/styles/floatingFooter.style';
 
 const WordPatterns = ({nextPage, handleUpdate, formData}) => {
     

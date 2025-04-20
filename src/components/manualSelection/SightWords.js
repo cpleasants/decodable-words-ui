@@ -1,7 +1,7 @@
 import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithToggle';
 import sightWordSets from '../../constants/sightWordsSets'
 import { Button, Box, Typography } from '@mui/material';
-import FloatingFooter from '../common/styles/floatingFooter';
+import FloatingFooter from '../common/styles/floatingFooter.style';
 
 const SightWords = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
     return (

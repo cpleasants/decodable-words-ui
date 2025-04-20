@@ -1,6 +1,6 @@
 import CheckboxGroup from "../common/CheckboxGroup/CheckboxGroup"
 import { Button, Box, Typography } from '@mui/material';
-import FloatingFooter from '../common/styles/floatingFooter';
+import FloatingFooter from '../common/styles/floatingFooter.style';
 
 const OtherParameters = ({nextPage, prevPage, handleUpdate, formData}) => {
     return (
