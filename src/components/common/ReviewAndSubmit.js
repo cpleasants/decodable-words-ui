@@ -1,35 +1,35 @@
 import phonemes from "../../constants/phonemes";
 import sightWordSets from "../../constants/sightWordsSets";
-import { Button, Box, Typography } from '@mui/material';
+import { Button, Box, Table, TableRow, TableCell } from '@mui/material';
 import FloatingFooter from './styles/floatingFooter.style';
 
 const ReviewAndSubmit = ({formData, restart, handleApiResponse}) => {
 
-  const checkedBoxes = Object.keys(formData).filter(c => formData[c] === true)
+  const selected = Object.keys(formData).filter(c => formData[c] === true)
     
   const generateRequest = () => {
     return {
-      "hard_consonants" : phonemes["hard_consonants"].filter(s => checkedBoxes.includes(`l_${s}`)),
-      "soft_consonants" : checkedBoxes.includes("allow_soft_consonants") || checkedBoxes.includes("cvce") 
-        ? phonemes["soft_consonants"].filter(s => checkedBoxes.includes(s)) : [],
-      "short_vowels" : phonemes["short_vowels"].filter(s => checkedBoxes.includes(s)),
-      "long_vowels" : checkedBoxes.includes("allow_long_vowels") || checkedBoxes.includes("cvce") 
-        ? phonemes["long_vowels"].filter(s => checkedBoxes.includes(s)) : [],
-      "vowel_teams" : phonemes["vowel_teams"].filter(s => checkedBoxes.includes(s)),
-      "digraphs" : phonemes["digraphs"].filter(s => checkedBoxes.includes(s)),
-      "double_letters" : checkedBoxes.includes("allow_double_consonants") 
-        ? phonemes["double_letters"].filter(s => checkedBoxes.includes(s[0])) : [],
-      "prefix_digraphs" : phonemes["prefix_digraphs"].filter(s => checkedBoxes.includes(s)),
-      "prefix_blends" : phonemes["prefix_blends"].filter(s => checkedBoxes.includes(s)),
-      "suffix_blends" : phonemes["suffix_blends"].filter(s => checkedBoxes.includes(s)),
-      "common_endings" : phonemes["common_endings"].filter(s => checkedBoxes.includes(s)),
-      "allow_silent_e" : checkedBoxes.includes("allow_silent_e"),
-      "allow_vc" : checkedBoxes.includes("vc"),
-      "allow_cvc" : checkedBoxes.includes("cvc"),
-      "allow_cvce" : checkedBoxes.includes("cvce"),
-      "allow_cvcvc" : checkedBoxes.includes("cvcvc"),
+      "hard_consonants" : phonemes["hard_consonants"].filter(s => selected.includes(`l_${s}`)),
+      "soft_consonants" : selected.includes("allow_soft_consonants") || selected.includes("cvce") 
+        ? phonemes["soft_consonants"].filter(s => selected.includes(`l_${s}`)) : [],
+      "short_vowels" : phonemes["short_vowels"].filter(s => selected.includes(`l_${s}`)),
+      "long_vowels" : selected.includes("allow_long_vowels") || selected.includes("cvce") 
+        ? phonemes["long_vowels"].filter(s => selected.includes(`l_${s}`)) : [],
+      "vowel_teams" : phonemes["vowel_teams"].filter(s => selected.includes(s)),
+      "digraphs" : phonemes["digraphs"].filter(s => selected.includes(s)),
+      "double_letters" : selected.includes("allow_double_consonants") 
+        ? phonemes["double_letters"].filter(s => selected.includes(s[0])) : [],
+      "prefix_digraphs" : phonemes["prefix_digraphs"].filter(s => selected.includes(s)),
+      "prefix_blends" : phonemes["prefix_blends"].filter(s => selected.includes(s)),
+      "suffix_blends" : phonemes["suffix_blends"].filter(s => selected.includes(s)),
+      "common_endings" : phonemes["common_endings"].filter(s => selected.includes(s)),
+      "allow_silent_e" : selected.includes("allow_silent_e"),
+      "allow_vc" : selected.includes("vc"),
+      "allow_cvc" : selected.includes("cvc"),
+      "allow_cvce" : selected.includes("cvce"),
+      "allow_cvcvc" : selected.includes("cvcvc"),
       "decodable_only" : true, // TODO: how to include non-decodable words? Should I even?
-      "sight_words" : Object.values(sightWordSets).flat().filter(w => checkedBoxes.includes(w))
+      "sight_words" : Object.values(sightWordSets).flat().filter(w => selected.includes(w))
     }
   }
 
@@ -59,9 +59,8 @@ const ReviewAndSubmit = ({formData, restart, handleApiResponse}) => {
   }
 
   const listReviewFields = [
-    // Note that I'm handling hard_consonants separately
+    // Note that I'm handling hard_consonants and short_vowels separately
     { label: "Soft Consonants", key: "soft_consonants" },
-    { label: "Short Vowels", key: "short_vowels" },
     { label: "Long Vowels", key: "long_vowels" },
     { label: "Vowel Teams", key: "vowel_teams" },
     { label: "Digraphs", key: "digraphs" },
@@ -75,10 +74,10 @@ const ReviewAndSubmit = ({formData, restart, handleApiResponse}) => {
 
   const displayListReviewFields = (field) => {
     return (
-      <Typography variant="body1" gutterBottom>
-        <strong>{field.label}: </strong>
-          {`${data[field.key].length === 0 ?  "None" : data[field.key].join(', ')}`}
-      </Typography>
+      <TableRow>
+        <TableCell><strong>{field.label}</strong></TableCell>
+        <TableCell>{`${data[field.key].length === 0 ?  "None" : data[field.key].join(', ')}`}</TableCell>
+      </TableRow>
     )
   }
 
@@ -93,27 +92,33 @@ const ReviewAndSubmit = ({formData, restart, handleApiResponse}) => {
 
   const displayBooleanReviewFields = (field) => {
     return (
-      <Typography variant="body1" gutterBottom>
-        <strong>{field.label}: </strong>
-          {data[field.key] ? "Yes" : "No"}
-      </Typography>
+      <TableRow>
+        <TableCell><strong>{field.label}</strong></TableCell>
+        <TableCell>{data[field.key] ? "Yes" : "No"}</TableCell>
+      </TableRow>
     )
   }
 
   return (
     <Box>
-      <Typography variant="h4">Review</Typography>
-      <Typography variant="body1" gutterBottom>
-        <strong>Hard Consonants: </strong>
-          {`${data['hard_consonants'].length === 20 ?  "All (except q)" : data['hard_consonants'].join(', ')}`}
-      </Typography>
-      {listReviewFields.map(field => displayListReviewFields(field))}
-      {booleanReviewFields.map(field => displayBooleanReviewFields(field))}
+      <Table>
+        <TableRow>
+          <TableCell><strong>Hard Consonants</strong></TableCell>
+          <TableCell>{`${data['hard_consonants'].length === 20 ?  "All (except q)" : data['hard_consonants'].join(', ')}`}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell><strong>Short Vowels</strong></TableCell>
+          <TableCell>{`${data['short_vowels'].length === 5 ?  "All" : data['short_vowels'].join(', ')}`}</TableCell>
+        </TableRow>
+        {booleanReviewFields.map(field => displayBooleanReviewFields(field))}
+        {listReviewFields.map(field => displayListReviewFields(field))} 
+      </Table>
       <FloatingFooter>
         <Button  variant="contained" onClick={restart}>Edit</Button>
         <Button  variant="contained" onClick={handleSubmit}>Submit</Button>
       </FloatingFooter>
     </Box>
+    
   )
 }
 
