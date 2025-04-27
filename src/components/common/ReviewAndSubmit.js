@@ -3,9 +3,7 @@ import sightWordSets from "../../constants/sightWordsSets";
 import { Button, Box, Table, TableRow, TableCell } from '@mui/material';
 import FloatingFooter from './styles/floatingFooter.style';
 
-const ReviewAndSubmit = ({formData, restart, handleApiResponse}) => {
-
-  const selected = Object.keys(formData).filter(c => formData[c] === true)
+const ReviewAndSubmit = ({selected, restart, handleApiResponse}) => {
     
   const generateRequest = () => {
     return {
@@ -101,6 +99,7 @@ const ReviewAndSubmit = ({formData, restart, handleApiResponse}) => {
 
   return (
     <Box>
+      {selected.join(', ')}
       <Table>
         <TableRow>
           <TableCell><strong>Hard Consonants</strong></TableCell>

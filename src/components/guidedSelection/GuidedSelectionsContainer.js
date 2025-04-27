@@ -24,7 +24,7 @@ const GuidedSelectionContainer = () => {
                 nextPage = {nextPage}/>
         case 1:
             return <ReviewAndSubmit
-                formData = {formData}
+                selected = {Object.keys(formData).filter(c => formData[c] === true)}
                 handleApiResponse = {handleApiResponse}
                 restart = {restart}/>
         default:
