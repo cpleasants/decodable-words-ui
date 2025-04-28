@@ -1,4 +1,6 @@
 import CheckboxGroup from "../common/CheckboxGroup/CheckboxGroup";
+import { Button } from '@mui/material';
+import FloatingFooter from '../common/styles/floatingFooter.style';
 
 const WordPatterns = ({nextPage, handleUpdate, formData}) => {
     
@@ -14,10 +16,11 @@ const WordPatterns = ({nextPage, handleUpdate, formData}) => {
             idList={["vc", "cvc", "cvce", "cvcvc"]}
             handleUpdate={handleUpdate}
             formData={formData}
+            groupName="word_patterns"
             />
-            <div className='button-footer'>
-                <button onClick={nextPage}>Next</button>
-            </div>
+            <FloatingFooter>
+              <Button  variant="contained" onClick={nextPage}>Next</Button>
+            </FloatingFooter>
         </div>
     )
 }

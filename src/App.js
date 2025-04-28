@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
+import { Box, Typography, Stack, Switch } from '@mui/material';
 import ManualSelectionsContainer from './components/manualSelection/ManualSelectionsContainer';
 import GuidedSelectionContainer from './components/guidedSelection/GuidedSelectionsContainer'
 
 function App() {
   const [ selectionOption, setSelectionOption ] = useState("Level")
 
-  const handleSelection = (event) => {
-    setSelectionOption(event.target.value)
+  const handleSwitch = (event) => {
+    setSelectionOption(event.target.checked ? "Manual" : "Level");
   }
 
   return (
-    <div>
-      <h1>Word Generator</h1>
-      <select value={selectionOption} onChange={handleSelection}>
-        <option value="Level">Select by Level</option>
-        <option value="Manual">Manual Selection</option>
-      </select>
+    <Box>
+      <Typography variant="h1">Word Generator</Typography>
+      <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+        <Typography>By Level</Typography>
+        <Switch checked={selectionOption === "Manual"} onChange={handleSwitch}/>
+        <Typography>Manual</Typography>
+      </Stack>
       {
         selectionOption === "Level" ? (
           <GuidedSelectionContainer />
@@ -23,7 +25,7 @@ function App() {
           <ManualSelectionsContainer />
         ) : null
       }
-    </div>
+    </Box>
 )
 }
 
