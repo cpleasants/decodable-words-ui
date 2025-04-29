@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, Link } from '@mui/material';
 import FloatingFooter from './styles/floatingFooter.style';
 
-const ResponseDisplay = ({ apiResponse, restart }) => {
+const ResponseDisplay = ({ apiResponse }) => {
   return (
     <div>
       <h2>Words List</h2>
@@ -13,7 +13,7 @@ const ResponseDisplay = ({ apiResponse, restart }) => {
       ) : null}
       <FloatingFooter>
         
-        <Button  variant="contained" onClick={restart}>Start over</Button>
+        <Button  variant="contained" component={Link} to="/">Start over</Button>
       </FloatingFooter>
     </div>
     

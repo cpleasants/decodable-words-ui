@@ -1,9 +1,14 @@
 import phonemes from "../../constants/phonemes";
 import sightWordSets from "../../constants/sightWordsSets";
-import { Button, Box, Table, TableRow, TableCell } from '@mui/material';
+import { Button, Box, Table, TableRow, TableCell, Link } from '@mui/material';
 import FloatingFooter from './styles/floatingFooter.style';
+import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const ReviewAndSubmit = ({selected, restart, handleApiResponse}) => {
+
+const ReviewAndSubmit = ({selected, setApiResponse}) => {
+
+  const navigate = useNavigate();
     
   const generateRequest = () => {
     return {
@@ -49,8 +54,9 @@ const ReviewAndSubmit = ({selected, restart, handleApiResponse}) => {
       }
 
       const result = await res.json();
-      handleApiResponse(result);
-      
+      setApiResponse(result);
+
+      navigate('/response');
     } catch (error) {
       console.error('Error submitting data:', error);
     }
@@ -113,7 +119,7 @@ const ReviewAndSubmit = ({selected, restart, handleApiResponse}) => {
         {listReviewFields.map(field => displayListReviewFields(field))} 
       </Table>
       <FloatingFooter>
-        <Button  variant="contained" onClick={restart}>Edit</Button>
+        <Button  variant="contained" component={RouterLink} to="/">Edit</Button>
         <Button  variant="contained" onClick={handleSubmit}>Submit</Button>
       </FloatingFooter>
     </Box>

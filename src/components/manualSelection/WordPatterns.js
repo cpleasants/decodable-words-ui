@@ -1,6 +1,7 @@
 import CheckboxGroup from "../common/CheckboxGroup/CheckboxGroup";
-import { Button } from '@mui/material';
+import { Button, Link } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
+import { Link as RouterLink } from 'react-router-dom';
 
 const WordPatterns = ({nextPage, handleUpdate, formData}) => {
     
@@ -19,7 +20,7 @@ const WordPatterns = ({nextPage, handleUpdate, formData}) => {
             groupName="word_patterns"
             />
             <FloatingFooter>
-              <Button  variant="contained" onClick={nextPage}>Next</Button>
+              <Button  variant="contained" component={RouterLink} to="/manual-selection/letters">Next</Button>
             </FloatingFooter>
         </div>
     )
