@@ -1,7 +1,7 @@
 import CheckboxGroup from "../common/CheckboxGroup/CheckboxGroup"
-import { Button, Box, Typography, Link } from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const OtherParameters = ({nextPage, prevPage, handleUpdate, formData}) => {
     return (
@@ -15,8 +15,8 @@ const OtherParameters = ({nextPage, prevPage, handleUpdate, formData}) => {
                 groupName="other_parameters"
             />
             <FloatingFooter>
-              <Button  variant="contained" component={RouterLink} to="/manual-selection/letter-combinations">Previous</Button>
-              <Button  variant="contained" component={RouterLink} to="/manual-selection/sight-words">Next</Button>
+              <Button  variant="contained" component={Link} to="/manual-selection/letter-combinations">Previous</Button>
+              <Button  variant="contained" component={Link} to="/manual-selection/sight-words">Next</Button>
             </FloatingFooter>
         </Box>
     )

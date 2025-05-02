@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 // import { Routes, Route } from 'react-router-dom';
-import { Button, Box, Typography, ToggleButton, ToggleButtonGroup, Link } from '@mui/material';
+import { Button, Box, Typography, ToggleButton, ToggleButtonGroup } from '@mui/material';
 // import ReviewAndSubmit from '../common/ReviewAndSubmit';
 // import ResponseDisplay from '../common/ResponseDisplay'
 import { Outlet } from 'react-router-dom';
-import FloatingFooter from '../common/styles/floatingFooter.style'
-import letterSets from '../../constants/letterSets'
-import letterCombinationSets from '../../constants/letterCombinationSets';
-import sightWordSets from '../../constants/sightWordsSets';
-import { Link as RouterLink } from 'react-router-dom';
+import FloatingFooter from './common/styles/floatingFooter.style'
+import letterSets from '../constants/letterSets'
+import letterCombinationSets from '../constants/letterCombinationSets';
+import sightWordSets from '../constants/sightWordsSets';
+import { Link } from 'react-router-dom';
 
 
 const GuidedSelectionContainer = ({ setSelected }) => {
@@ -134,7 +134,7 @@ const GuidedSelectionContainer = ({ setSelected }) => {
         ])}
       </ToggleButtonGroup>
       <FloatingFooter>
-        <Button type="button" variant="contained" component={RouterLink} to="/review-and-submit" onClick={handleSubmit}>Review</Button>
+        <Button type="button" variant="contained" component={Link} to="/review-and-submit" onClick={handleSubmit}>Review</Button>
       </FloatingFooter>
     </Box>
   );

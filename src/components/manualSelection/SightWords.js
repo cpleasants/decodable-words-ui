@@ -1,8 +1,8 @@
 import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithToggle';
 import sightWordSets from '../../constants/sightWordsSets'
-import { Button, Box, Typography, Link } from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SightWords = ({nextPage, prevPage, handleUpdate, formData, setFormData, handleComplete}) => {
     return (
@@ -20,8 +20,8 @@ const SightWords = ({nextPage, prevPage, handleUpdate, formData, setFormData, ha
                 </Box>
             ))}
             <FloatingFooter>
-              <Button  variant="contained" component={RouterLink} to="/manual-selection/other-parameters">Previous</Button>
-              <Button  variant="contained" onClick={handleComplete} component={RouterLink} to="/review-and-submit">Review</Button>
+              <Button  variant="contained" component={Link} to="/manual-selection/other-parameters">Previous</Button>
+              <Button  variant="contained" onClick={handleComplete} component={Link} to="/review-and-submit">Review</Button>
             </FloatingFooter>
         </Box>
     )

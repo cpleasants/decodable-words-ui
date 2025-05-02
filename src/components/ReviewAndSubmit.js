@@ -1,12 +1,14 @@
-import phonemes from "../../constants/phonemes";
-import sightWordSets from "../../constants/sightWordsSets";
-import { Button, Box, Table, TableRow, TableCell, Link } from '@mui/material';
-import FloatingFooter from './styles/floatingFooter.style';
-import { Link as RouterLink } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
+import { Button, Box, Table, TableRow, TableCell } from '@mui/material';
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import phonemes from "../constants/phonemes";
+import sightWordSets from "../constants/sightWordsSets";
+import FloatingFooter from './common/styles/floatingFooter.style';
 
 const ReviewAndSubmit = ({selected, setApiResponse}) => {
+
+  const [ loading, setLoading ] = useState(false)
 
   const navigate = useNavigate();
     
@@ -41,6 +43,8 @@ const ReviewAndSubmit = ({selected, setApiResponse}) => {
   const handleSubmit = async (event) => {
     event.preventDefault(); // allows me to handle the <form >submission manually instead of going to default (which is redirect to URL)
 
+    setLoading(true);
+    
     try {
       const res = await fetch('http://localhost:8000/filter-words', {
         method: 'POST',
@@ -119,8 +123,8 @@ const ReviewAndSubmit = ({selected, setApiResponse}) => {
         {listReviewFields.map(field => displayListReviewFields(field))} 
       </Table>
       <FloatingFooter>
-        <Button  variant="contained" component={RouterLink} to="/">Edit</Button>
-        <Button  variant="contained" onClick={handleSubmit}>Submit</Button>
+        <Button variant="contained" component={Link} to="/">Edit</Button>
+        <Button loading={loading} variant="contained" onClick={handleSubmit}>Submit</Button>
       </FloatingFooter>
     </Box>
     
