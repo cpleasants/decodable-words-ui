@@ -3,7 +3,7 @@ import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
 
-const OtherParameters = ({nextPage, prevPage, handleUpdate, formData}) => {
+const OtherParameters = ({handleUpdate, formData}) => {
     return (
         <Box>
             <Typography variant='h2'>Other Parameters</Typography>

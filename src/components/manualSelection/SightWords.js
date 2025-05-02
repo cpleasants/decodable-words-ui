@@ -4,7 +4,7 @@ import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
 
-const SightWords = ({nextPage, prevPage, handleUpdate, formData, setFormData, handleComplete}) => {
+const SightWords = ({handleUpdate, formData, setFormData, handleComplete}) => {
     return (
         <Box>
             <Typography variant='h2'>Sight Words</Typography>

@@ -4,11 +4,6 @@ import FloatingFooter from '../common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
 
 const WordPatterns = ({nextPage, handleUpdate, formData}) => {
-    
-    // const handleNext = (e) => {
-    //     e.preventDefault();
-    //     nextPage();
-    // }
 
     return (
         <div>

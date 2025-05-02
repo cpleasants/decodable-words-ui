@@ -6,8 +6,6 @@ import Letters from './Letters'
 import LetterCombinations from './LetterCombinations'
 import OtherParameters from './OtherParameters'
 import SightWords from './SightWords'
-// import ReviewAndSubmit from '../common/ReviewAndSubmit';
-// import ResponseDisplay from '../common/ResponseDisplay'
 import { Navigate } from 'react-router-dom';
 
 const ManualSelectionsContainer = ({ setSelected }) => {

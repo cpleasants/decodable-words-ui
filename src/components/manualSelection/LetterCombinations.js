@@ -4,7 +4,7 @@ import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style'
 import { Link } from 'react-router-dom';
 
-const LetterCombinations = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
+const LetterCombinations = ({handleUpdate, formData, setFormData}) => {
     return (
         <Box>
             <Typography variant='h2'>Letter Combinations</Typography>

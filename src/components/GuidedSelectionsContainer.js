@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
-// import { Routes, Route } from 'react-router-dom';
 import { Button, Box, Typography, ToggleButton, ToggleButtonGroup } from '@mui/material';
-// import ReviewAndSubmit from '../common/ReviewAndSubmit';
-// import ResponseDisplay from '../common/ResponseDisplay'
-import { Outlet } from 'react-router-dom';
 import FloatingFooter from './common/styles/floatingFooter.style'
 import letterSets from '../constants/letterSets'
 import letterCombinationSets from '../constants/letterCombinationSets';
@@ -14,12 +10,6 @@ import { Link } from 'react-router-dom';
 const GuidedSelectionContainer = ({ setSelected }) => {
   const [ level, setLevel ] = useState(0)
   const [ hoverLevel, setHoverLevel ] = useState(0)
-  // const [ apiResponse, setApiResponse ] = useState(null);
-
-  // const handleApiResponse = (response) => {
-  //     setPage((prevPage) => prevPage + 1)
-  //     setApiResponse(response)
-  // }
 
   const levels = {
     1: [...letterSets["First Letters"].map(id => `l_${id}`), "vc", "cvc"],
@@ -46,7 +36,6 @@ const GuidedSelectionContainer = ({ setSelected }) => {
     }
     console.log(idList)
     setSelected(idList)
-    // nextPage()
   }
 
   // Determine if it's a touch device to disable the hover (onMouseEnter) behavior on touch screens
@@ -138,28 +127,6 @@ const GuidedSelectionContainer = ({ setSelected }) => {
       </FloatingFooter>
     </Box>
   );
-
-    // return (
-    //   <Routes>
-    //     <Route path="/by-level" element={<Levels setFormData = {setFormData} nextPage = {nextPage}/>} />
-    //   </Routes>
-    // )
-
-    // switch (page) {
-    //     case 0: 
-    //         return <Levels
-    //             setFormData = {setFormData}
-    //             nextPage = {nextPage}/>
-    //     case 1:
-    //         return <ReviewAndSubmit
-    //             selected = {Object.keys(formData).filter(c => formData[c] === true)}
-    //             handleApiResponse = {handleApiResponse}
-    //             restart = {restart}/>
-    //     default:
-    //         return <ResponseDisplay
-    //             apiResponse = {apiResponse}
-    //             restart={restart}/>
-    // }
 
 }
 
