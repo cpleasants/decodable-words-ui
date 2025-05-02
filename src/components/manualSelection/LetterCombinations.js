@@ -20,8 +20,8 @@ const LetterCombinations = ({handleUpdate, formData, setFormData}) => {
                 </Box>
             ))}
             <FloatingFooter>
-              <Button  variant="contained" component={Link} to="/manual-selection/word-patterns">Previous</Button>
-              <Button  variant="contained" component={Link} to="/manual-selection/letter-combinations">Next</Button>
+              <Button  variant="contained" component={Link} to="/manual-selection/letters">Previous</Button>
+              <Button  variant="contained" component={Link} to="/manual-selection/other-parameters">Next</Button>
             </FloatingFooter>
         </Box>
     )

@@ -44,7 +44,7 @@ const ReviewAndSubmit = ({selected, setApiResponse}) => {
     event.preventDefault(); // allows me to handle the <form >submission manually instead of going to default (which is redirect to URL)
 
     setLoading(true);
-    
+
     try {
       const res = await fetch('http://localhost:8000/filter-words', {
         method: 'POST',
@@ -82,7 +82,7 @@ const ReviewAndSubmit = ({selected, setApiResponse}) => {
 
   const displayListReviewFields = (field) => {
     return (
-      <TableRow>
+      <TableRow key={field.key}>
         <TableCell><strong>{field.label}</strong></TableCell>
         <TableCell>{`${data[field.key].length === 0 ?  "None" : data[field.key].join(', ')}`}</TableCell>
       </TableRow>
@@ -100,7 +100,7 @@ const ReviewAndSubmit = ({selected, setApiResponse}) => {
 
   const displayBooleanReviewFields = (field) => {
     return (
-      <TableRow>
+      <TableRow key={field.key}>
         <TableCell><strong>{field.label}</strong></TableCell>
         <TableCell>{data[field.key] ? "Yes" : "No"}</TableCell>
       </TableRow>
@@ -109,7 +109,7 @@ const ReviewAndSubmit = ({selected, setApiResponse}) => {
 
   return (
     <Box>
-      {selected.join(', ')}
+      {/* {selected.join(', ')} */}
       <Table>
         <TableRow>
           <TableCell><strong>Hard Consonants</strong></TableCell>

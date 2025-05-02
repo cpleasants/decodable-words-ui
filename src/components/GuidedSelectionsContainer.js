@@ -64,8 +64,8 @@ const GuidedSelectionContainer = ({ setSelected }) => {
       onMouseLeave={!isTouchDevice ? (() => setHoverLevel(0)) : undefined}
     >
       <Typography variant="h5">{title}</Typography>
-      {contentsList.map(content => {
-        return <Typography variant="p">{content}</Typography>
+      {contentsList.map((content, i) => {
+        return <Typography key={title[i]} variant="p">{content}</Typography>
       })}
     </ToggleButton>
   );
