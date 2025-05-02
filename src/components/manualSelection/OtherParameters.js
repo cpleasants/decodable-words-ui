@@ -2,21 +2,24 @@ import CheckboxGroup from "../common/CheckboxGroup/CheckboxGroup"
 import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
+import { otherParameters } from '../../constants'
 
-const OtherParameters = ({selected, setSelected}) => {
+const OtherParameters = ({selected, setSelected, includeFooter = true}) => {
     return (
         <Box>
             <Typography variant='h2'>Other Parameters</Typography>
             <CheckboxGroup 
-                itemList={["Long Vowels", "Soft Consonants", "Alternative Vowel Sounds", "Double Consonants", "Silent E"]}
-                idList={["allow_long_vowels", "allow_soft_consonants", "allow_alt_vowels", "allow_double_consonants", "allow_silent_e"]}
+                itemList={Object.keys(otherParameters)}
+                idList={Object.values(otherParameters)}
                 selected={selected}
                 setSelected={setSelected}
             />
-            <FloatingFooter>
-              <Button  variant="contained" component={Link} to="/manual-selection/letter-combinations">Previous</Button>
-              <Button  variant="contained" component={Link} to="/manual-selection/sight-words">Next</Button>
-            </FloatingFooter>
+            {includeFooter && (
+              <FloatingFooter>
+                <Button  variant="contained" component={Link} to="/manual-selection/letter-combinations">Previous</Button>
+                <Button  variant="contained" component={Link} to="/manual-selection/sight-words">Next</Button>
+              </FloatingFooter>
+            )}
         </Box>
     )
 }

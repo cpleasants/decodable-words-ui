@@ -1,17 +1,27 @@
-
-import { Button, Box, Table, TableRow, TableCell } from '@mui/material';
+import { Button, Box, Table, TableRow, TableCell, Dialog, DialogContent, DialogActions, Typography, TableBody } from '@mui/material';
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import phonemes from "../constants/phonemes";
-import sightWordSets from "../constants/sightWordsSets";
+import { phonemes, sightWordSets, letterSets, letterCombinationSets, wordPatterns, otherParameters } from "../constants";
 import FloatingFooter from './common/styles/floatingFooter.style';
+import LetterCombinations from './manualSelection/LetterCombinations';
+import SightWords from './manualSelection/SightWords';
+import WordPatterns from './manualSelection/WordPatterns';
+import Letters from './manualSelection/Letters';
+import OtherParameters from './manualSelection/OtherParameters';
 
-const ReviewAndSubmit = ({selected, setApiResponse}) => {
-
-  const [ loading, setLoading ] = useState(false)
-
+const ReviewAndSubmit = ({selected, setSelected, setApiResponse}) => {
+  const [loading, setLoading] = useState(false);
+  const [openDialog, setOpenDialog] = useState(null);
   const navigate = useNavigate();
     
+  const handleOpenDialog = (dialogName) => {
+    setOpenDialog(dialogName);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(null);
+  };
+
   const generateRequest = () => {
     return {
       "hard_consonants" : phonemes["hard_consonants"].filter(s => selected.has(`l_${s}`)),
@@ -66,69 +76,79 @@ const ReviewAndSubmit = ({selected, setApiResponse}) => {
     }
   }
 
-  const listReviewFields = [
-    // Note that I'm handling hard_consonants and short_vowels separately
-    { label: "Soft Consonants", key: "soft_consonants" },
-    { label: "Long Vowels", key: "long_vowels" },
-    { label: "Vowel Teams", key: "vowel_teams" },
-    { label: "Digraphs", key: "digraphs" },
-    { label: "Double Letters", key: "double_letters" },
-    { label: "Prefix Digraphs", key: "prefix_digraphs" },
-    { label: "Prefix Blends", key: "prefix_blends" },
-    { label: "Suffix Blends", key: "suffix_blends" },
-    { label: "Common Endings", key: "common_endings" },
-    { label: "Sight Words", key: "sight_words" }
-  ]
-
-  const displayListReviewFields = (field) => {
-    return (
-      <TableRow key={field.key}>
-        <TableCell><strong>{field.label}</strong></TableCell>
-        <TableCell>{`${data[field.key].length === 0 ?  "None" : data[field.key].join(', ')}`}</TableCell>
-      </TableRow>
-    )
+  const componentMap = {
+    "wordPatterns" : WordPatterns,
+    "letters" : Letters,
+    "letterCombinations" : LetterCombinations,
+    "otherParameters" : OtherParameters,
+    "sightWords" : SightWords
   }
 
-  const booleanReviewFields = [
-    { label: "Allow Silent E", key: "allow_silent_e" },
-    { label: "Allow VC", key: "allow_vc" },
-    { label: "Allow CVC", key: "allow_cvc" },
-    { label: "Allow CVCE", key: "allow_cvce" },
-    { label: "Allow CVCVC", key: "allow_cvcvc" },
-    { label: "Decodable Only", key: "decodable_only" }
-  ]
 
-  const displayBooleanReviewFields = (field) => {
+  const renderEditDialog = () => {
+    if (!openDialog) return null;
+    const Component = componentMap[openDialog];
     return (
-      <TableRow key={field.key}>
-        <TableCell><strong>{field.label}</strong></TableCell>
-        <TableCell>{data[field.key] ? "Yes" : "No"}</TableCell>
-      </TableRow>
-    )
-  }
+      <Dialog open={true} onClose={handleCloseDialog} maxWidth="md" fullWidth>
+        <DialogContent>
+          <Component selected={selected} setSelected={setSelected} includeFooter={false} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Close</Button>
+        </DialogActions>
+      </Dialog>
+    );
+  };
 
   return (
     <Box>
-      {/* {selected.join(', ')} */}
+      <Typography variant="h3">Review And Submit</Typography>
       <Table>
-        <TableRow>
-          <TableCell><strong>Hard Consonants</strong></TableCell>
-          <TableCell>{`${data['hard_consonants'].length === 20 ?  "All (except q)" : data['hard_consonants'].join(', ')}`}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell><strong>Short Vowels</strong></TableCell>
-          <TableCell>{`${data['short_vowels'].length === 5 ?  "All" : data['short_vowels'].join(', ')}`}</TableCell>
-        </TableRow>
-        {booleanReviewFields.map(field => displayBooleanReviewFields(field))}
-        {listReviewFields.map(field => displayListReviewFields(field))} 
+        <TableBody>
+          <TableRow>
+            <TableCell><strong>Word Patterns</strong></TableCell>
+            <TableCell>{Object.keys(wordPatterns).filter(k => selected.has(wordPatterns[k])).join(', ')}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => handleOpenDialog('wordPatterns')}>Edit</Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell><strong>Letters</strong></TableCell>
+            <TableCell>{Object.values(letterSets).flat().filter(s => selected.has(`l_${s}`)).join(', ')}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => handleOpenDialog('letters')}>Edit</Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell><strong>Letter Combinations</strong></TableCell>
+            <TableCell>{Object.values(letterCombinationSets).flat().filter(w => selected.has(w)).join(', ')}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => handleOpenDialog('letterCombinations')}>Edit</Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell><strong>Other Parameters</strong></TableCell>
+            <TableCell>{Object.keys(otherParameters).filter(k => selected.has(otherParameters[k])).join(', ')}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => handleOpenDialog('otherParameters')}>Edit</Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell><strong>Sight Words</strong></TableCell>
+            <TableCell>{Object.values(sightWordSets).flat().filter(w => selected.has(w)).join(', ')}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => handleOpenDialog('sightWords')}>Edit</Button>
+            </TableCell>
+          </TableRow>
+        </TableBody>
       </Table>
+      {renderEditDialog()}
       <FloatingFooter>
-        <Button variant="contained" component={Link} to="/manual-selection">Edit</Button>
+        <Button variant="contained" component={Link} to="/manual-selection">Back</Button>
         <Button loading={loading} variant="contained" onClick={handleSubmit}>Submit</Button>
       </FloatingFooter>
     </Box>
-    
-  )
-}
+  );
+};
 
 export default ReviewAndSubmit;
