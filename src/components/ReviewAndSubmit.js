@@ -1,4 +1,4 @@
-import { Button, Box, Table, TableRow, TableCell, Dialog, DialogContent, DialogActions } from '@mui/material';
+import { Button, Box, Table, TableRow, TableCell, Dialog, DialogContent, DialogActions, Typography, TableBody } from '@mui/material';
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { phonemes, sightWordSets, letterSets, letterCombinationSets, wordPatterns, otherParameters } from "../constants";
@@ -102,42 +102,45 @@ const ReviewAndSubmit = ({selected, setSelected, setApiResponse}) => {
 
   return (
     <Box>
+      <Typography variant="h3">Review And Submit</Typography>
       <Table>
-        <TableRow>
-          <TableCell><strong>Word Patterns</strong></TableCell>
-          <TableCell>{Object.keys(wordPatterns).filter(k => selected.has(wordPatterns[k])).join(', ')}</TableCell>
-          <TableCell>
-            <Button variant="outlined" onClick={() => handleOpenDialog('wordPatterns')}>Edit</Button>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell><strong>Letters</strong></TableCell>
-          <TableCell>{Object.values(letterSets).flat().filter(s => selected.has(`l_${s}`)).join(', ')}</TableCell>
-          <TableCell>
-            <Button variant="outlined" onClick={() => handleOpenDialog('letters')}>Edit</Button>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell><strong>Letter Combinations</strong></TableCell>
-          <TableCell>{Object.values(letterCombinationSets).flat().filter(w => selected.has(w)).join(', ')}</TableCell>
-          <TableCell>
-            <Button variant="outlined" onClick={() => handleOpenDialog('letterCombinations')}>Edit</Button>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell><strong>Other Parameters</strong></TableCell>
-          <TableCell>{Object.keys(otherParameters).filter(k => selected.has(otherParameters[k])).join(', ')}</TableCell>
-          <TableCell>
-            <Button variant="outlined" onClick={() => handleOpenDialog('otherParameters')}>Edit</Button>
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell><strong>Sight Words</strong></TableCell>
-          <TableCell>{Object.values(sightWordSets).flat().filter(w => selected.has(w)).join(', ')}</TableCell>
-          <TableCell>
-            <Button variant="outlined" onClick={() => handleOpenDialog('sightWords')}>Edit</Button>
-          </TableCell>
-        </TableRow>
+        <TableBody>
+          <TableRow>
+            <TableCell><strong>Word Patterns</strong></TableCell>
+            <TableCell>{Object.keys(wordPatterns).filter(k => selected.has(wordPatterns[k])).join(', ')}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => handleOpenDialog('wordPatterns')}>Edit</Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell><strong>Letters</strong></TableCell>
+            <TableCell>{Object.values(letterSets).flat().filter(s => selected.has(`l_${s}`)).join(', ')}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => handleOpenDialog('letters')}>Edit</Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell><strong>Letter Combinations</strong></TableCell>
+            <TableCell>{Object.values(letterCombinationSets).flat().filter(w => selected.has(w)).join(', ')}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => handleOpenDialog('letterCombinations')}>Edit</Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell><strong>Other Parameters</strong></TableCell>
+            <TableCell>{Object.keys(otherParameters).filter(k => selected.has(otherParameters[k])).join(', ')}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => handleOpenDialog('otherParameters')}>Edit</Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell><strong>Sight Words</strong></TableCell>
+            <TableCell>{Object.values(sightWordSets).flat().filter(w => selected.has(w)).join(', ')}</TableCell>
+            <TableCell>
+              <Button variant="outlined" onClick={() => handleOpenDialog('sightWords')}>Edit</Button>
+            </TableCell>
+          </TableRow>
+        </TableBody>
       </Table>
       {renderEditDialog()}
       <FloatingFooter>

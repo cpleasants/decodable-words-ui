@@ -7,7 +7,7 @@ import sightWordSets from '../constants/sightWordsSets';
 import { Link } from 'react-router-dom';
 
 
-const GuidedSelectionContainer = ({ setSelected }) => {
+const GuidedSelection = ({ setSelected }) => {
   const [ level, setLevel ] = useState(0)
   const [ hoverLevel, setHoverLevel ] = useState(0)
 
@@ -65,7 +65,7 @@ const GuidedSelectionContainer = ({ setSelected }) => {
     >
       <Typography variant="h5">{title}</Typography>
       {contentsList.map((content, i) => {
-        return <Typography key={title} variant="p">{content}</Typography>
+        return <Typography key={title[i]} variant="p">{content}</Typography>
       })}
     </ToggleButton>
   );
@@ -130,4 +130,4 @@ const GuidedSelectionContainer = ({ setSelected }) => {
 
 }
 
-export default GuidedSelectionContainer
+export default GuidedSelection
