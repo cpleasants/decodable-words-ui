@@ -30,12 +30,12 @@ const GuidedSelectionContainer = ({ setSelected }) => {
   }
 
   const handleSubmit = () => {
-    const idList = [];
+    const ids = new Set([]);
     for (let i = 1; i <= level; i++) {
-        idList.push(...levels[i])
+        levels[i].forEach(item => ids.add(item))
     }
-    console.log(idList)
-    setSelected(idList)
+    console.log(ids)
+    setSelected(ids)
   }
 
   // Determine if it's a touch device to disable the hover (onMouseEnter) behavior on touch screens
@@ -65,7 +65,7 @@ const GuidedSelectionContainer = ({ setSelected }) => {
     >
       <Typography variant="h5">{title}</Typography>
       {contentsList.map((content, i) => {
-        return <Typography key={title[i]} variant="p">{content}</Typography>
+        return <Typography key={title} variant="p">{content}</Typography>
       })}
     </ToggleButton>
   );

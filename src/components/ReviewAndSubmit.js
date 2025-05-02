@@ -14,27 +14,27 @@ const ReviewAndSubmit = ({selected, setApiResponse}) => {
     
   const generateRequest = () => {
     return {
-      "hard_consonants" : phonemes["hard_consonants"].filter(s => selected.includes(`l_${s}`)),
-      "soft_consonants" : selected.includes("allow_soft_consonants") || selected.includes("cvce") 
-        ? phonemes["soft_consonants"].filter(s => selected.includes(`l_${s}`)) : [],
-      "short_vowels" : phonemes["short_vowels"].filter(s => selected.includes(`l_${s}`)),
-      "long_vowels" : selected.includes("allow_long_vowels") || selected.includes("cvce") 
-        ? phonemes["long_vowels"].filter(s => selected.includes(`l_${s}`)) : [],
-      "vowel_teams" : phonemes["vowel_teams"].filter(s => selected.includes(s)),
-      "digraphs" : phonemes["digraphs"].filter(s => selected.includes(s)),
-      "double_letters" : selected.includes("allow_double_consonants") 
-        ? phonemes["double_letters"].filter(s => selected.includes(s[0])) : [],
-      "prefix_digraphs" : phonemes["prefix_digraphs"].filter(s => selected.includes(s)),
-      "prefix_blends" : phonemes["prefix_blends"].filter(s => selected.includes(s)),
-      "suffix_blends" : phonemes["suffix_blends"].filter(s => selected.includes(s)),
-      "common_endings" : phonemes["common_endings"].filter(s => selected.includes(s)),
-      "allow_silent_e" : selected.includes("allow_silent_e"),
-      "allow_vc" : selected.includes("vc"),
-      "allow_cvc" : selected.includes("cvc"),
-      "allow_cvce" : selected.includes("cvce"),
-      "allow_cvcvc" : selected.includes("cvcvc"),
+      "hard_consonants" : phonemes["hard_consonants"].filter(s => selected.has(`l_${s}`)),
+      "soft_consonants" : selected.has("allow_soft_consonants") || selected.has("cvce") 
+        ? phonemes["soft_consonants"].filter(s => selected.has(`l_${s}`)) : [],
+      "short_vowels" : phonemes["short_vowels"].filter(s => selected.has(`l_${s}`)),
+      "long_vowels" : selected.has("allow_long_vowels") || selected.has("cvce") 
+        ? phonemes["long_vowels"].filter(s => selected.has(`l_${s}`)) : [],
+      "vowel_teams" : phonemes["vowel_teams"].filter(s => selected.has(s)),
+      "digraphs" : phonemes["digraphs"].filter(s => selected.has(s)),
+      "double_letters" : selected.has("allow_double_consonants") 
+        ? phonemes["double_letters"].filter(s => selected.has(s[0])) : [],
+      "prefix_digraphs" : phonemes["prefix_digraphs"].filter(s => selected.has(s)),
+      "prefix_blends" : phonemes["prefix_blends"].filter(s => selected.has(s)),
+      "suffix_blends" : phonemes["suffix_blends"].filter(s => selected.has(s)),
+      "common_endings" : phonemes["common_endings"].filter(s => selected.has(s)),
+      "allow_silent_e" : selected.has("allow_silent_e"),
+      "allow_vc" : selected.has("vc"),
+      "allow_cvc" : selected.has("cvc"),
+      "allow_cvce" : selected.has("cvce"),
+      "allow_cvcvc" : selected.has("cvcvc"),
       "decodable_only" : true, // TODO: how to include non-decodable words? Should I even?
-      "sight_words" : Object.values(sightWordSets).flat().filter(w => selected.includes(w))
+      "sight_words" : Object.values(sightWordSets).flat().filter(w => selected.has(w))
     }
   }
 
@@ -123,7 +123,7 @@ const ReviewAndSubmit = ({selected, setApiResponse}) => {
         {listReviewFields.map(field => displayListReviewFields(field))} 
       </Table>
       <FloatingFooter>
-        <Button variant="contained" component={Link} to="/">Edit</Button>
+        <Button variant="contained" component={Link} to="/manual-selection">Edit</Button>
         <Button loading={loading} variant="contained" onClick={handleSubmit}>Submit</Button>
       </FloatingFooter>
     </Box>
