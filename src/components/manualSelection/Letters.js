@@ -2,8 +2,9 @@ import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithTo
 import letterSets from '../../constants/letterSets';
 import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
+import { Link } from 'react-router-dom';
 
-const Letters = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
+const Letters = ({handleUpdate, formData, setFormData}) => {
     return (
       <Box>
           <Typography variant="h2">Letter Sets</Typography>
@@ -20,8 +21,8 @@ const Letters = ({nextPage, prevPage, handleUpdate, formData, setFormData}) => {
               </Box>
           ))}
           <FloatingFooter>
-            <Button  variant="contained" onClick={prevPage}>Previous</Button>
-            <Button  variant="contained" onClick={nextPage}>Next</Button>
+            <Button  variant="contained" component={Link} to="/manual-selection/letters">Previous</Button>
+            <Button  variant="contained" component={Link} to="/manual-selection/other-parameters">Next</Button>
           </FloatingFooter>
       </Box>
   )

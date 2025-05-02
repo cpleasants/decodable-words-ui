@@ -1,32 +1,30 @@
+
 import React, { useState } from 'react';
-import { Box, Typography, Stack, Switch } from '@mui/material';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Box } from '@mui/material';
 import ManualSelectionsContainer from './components/manualSelection/ManualSelectionsContainer';
-import GuidedSelectionContainer from './components/guidedSelection/GuidedSelectionsContainer'
+import GuidedSelectionContainer from './components/GuidedSelectionsContainer';
+import IntroPage from './components/IntroPage'
+import ReviewAndSubmit from './components/ReviewAndSubmit';
+import ResponseDisplay from './components/ResponseDisplay'
 
 function App() {
-  const [ selectionOption, setSelectionOption ] = useState("Level")
+  const [ selected, setSelected ] = useState([])
+  const [apiResponse, setApiResponse] = useState(null);
 
-  const handleSwitch = (event) => {
-    setSelectionOption(event.target.checked ? "Manual" : "Level");
-  }
 
   return (
-    <Box>
-      <Typography variant="h1">Word Generator</Typography>
-      <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
-        <Typography>By Level</Typography>
-        <Switch checked={selectionOption === "Manual"} onChange={handleSwitch}/>
-        <Typography>Manual</Typography>
-      </Stack>
-      {
-        selectionOption === "Level" ? (
-          <GuidedSelectionContainer />
-        ) : selectionOption === "Manual" ? (
-          <ManualSelectionsContainer />
-        ) : null
-      }
+    <Box sx={{ padding: 2 }}>
+      <Routes>
+        <Route path="/" element={<IntroPage />} />
+        <Route path="/by-level" element={<GuidedSelectionContainer setSelected={setSelected} />} />
+        <Route path="/manual-selection/*" element={<ManualSelectionsContainer setSelected={setSelected} />} />
+        <Route path="/review-and-submit" element={<ReviewAndSubmit selected={selected} setApiResponse={setApiResponse}/>} />
+        <Route path="/response" element={<ResponseDisplay apiResponse={apiResponse}/>}/>
+        <Route path="*" element={<div>Page Not Found</div>} />
+      </Routes>
     </Box>
-)
+  );
 }
 
 export default App;

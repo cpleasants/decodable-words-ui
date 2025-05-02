@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Button, Box, Typography, ToggleButton, ToggleButtonGroup } from '@mui/material';
-import FloatingFooter from '../common/styles/floatingFooter.style'
-import letterSets from '../../constants/letterSets'
-import letterCombinationSets from '../../constants/letterCombinationSets';
-import sightWordSets from '../../constants/sightWordsSets';
+import FloatingFooter from './common/styles/floatingFooter.style'
+import letterSets from '../constants/letterSets'
+import letterCombinationSets from '../constants/letterCombinationSets';
+import sightWordSets from '../constants/sightWordsSets';
+import { Link } from 'react-router-dom';
 
-const Levels = ({setFormData, nextPage}) => {
 
-  
+const GuidedSelectionContainer = ({ setSelected }) => {
   const [ level, setLevel ] = useState(0)
   const [ hoverLevel, setHoverLevel ] = useState(0)
 
@@ -34,10 +34,8 @@ const Levels = ({setFormData, nextPage}) => {
     for (let i = 1; i <= level; i++) {
         idList.push(...levels[i])
     }
-    setFormData(prev => ({
-        ...Object.fromEntries(idList.map(id => [id, true])),
-    }))
-    nextPage()
+    console.log(idList)
+    setSelected(idList)
   }
 
   // Determine if it's a touch device to disable the hover (onMouseEnter) behavior on touch screens
@@ -125,10 +123,11 @@ const Levels = ({setFormData, nextPage}) => {
         ])}
       </ToggleButtonGroup>
       <FloatingFooter>
-        <Button type="button" variant="contained" onClick={handleSubmit}>Review</Button>
+        <Button type="button" variant="contained" component={Link} to="/review-and-submit" onClick={handleSubmit}>Review</Button>
       </FloatingFooter>
     </Box>
   );
-};
 
-export default Levels;
+}
+
+export default GuidedSelectionContainer
