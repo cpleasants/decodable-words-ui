@@ -1,5 +1,4 @@
 
-import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import WordPatterns from './WordPatterns'
 import Letters from './Letters'
@@ -8,28 +7,16 @@ import OtherParameters from './OtherParameters'
 import SightWords from './SightWords'
 import { Navigate } from 'react-router-dom';
 
-const ManualSelectionsContainer = ({ setSelected }) => {
-    const [formData, setFormData] = useState({});
-
-    const handleUpdate = (name) => (event, newValues) => {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: newValues,
-      }));
-    };
-
-    const handleComplete = () => {
-      setSelected(Object.keys(formData).flatMap(k => {return formData[k]}));
-    }
+const ManualSelectionsContainer = ({ selected, setSelected }) => {
 
     return (
       <Routes>
-        <Route path="" element={<Navigate to="word-patterns" replace />} />
-        <Route path="word-patterns" element={<WordPatterns handleUpdate = {handleUpdate} formData = {formData}/>} />
-        <Route path="letters" element={<Letters handleUpdate = {handleUpdate} formData = {formData} setFormData={setFormData}/>} />
-        <Route path="letter-combinations" element={<LetterCombinations handleUpdate = {handleUpdate} formData = {formData} setFormData={setFormData}/>} />
-        <Route path="other-parameters" element={<OtherParameters handleUpdate = {handleUpdate} formData = {formData}/>} />
-        <Route path="sight-words" element={<SightWords handleUpdate = {handleUpdate} formData = {formData} setFormData={setFormData} handleComplete = {handleComplete}/>} />
+        <Route path="" element={<Navigate to="word-patterns" replace />} /> {/* If someone navigates to /manual-selection, go to the first step */}
+        <Route path="word-patterns" element={<WordPatterns selected = {selected} setSelected = {setSelected}/>} />
+        <Route path="letters" element={<Letters selected = {selected} setSelected = {setSelected}/>} />
+        <Route path="letter-combinations" element={<LetterCombinations selected = {selected} setSelected = {setSelected}/>} />
+        <Route path="other-parameters" element={<OtherParameters selected = {selected} setSelected = {setSelected}/>} />
+        <Route path="sight-words" element={<SightWords selected = {selected} setSelected = {setSelected} />} />
         <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>
     )

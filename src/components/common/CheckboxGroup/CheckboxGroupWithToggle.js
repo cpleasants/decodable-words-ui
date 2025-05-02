@@ -1,7 +1,7 @@
 import CheckboxGroup from "./CheckboxGroup";
 import { Switch, FormControlLabel, FormGroup } from "@mui/material";
 
-const CheckboxGroupWithToggle = ({ itemList, idList, groupName, handleUpdate, formData, setFormData }) => {
+const CheckboxGroupWithToggle = ({ groupName, itemList, idList, selected, setSelected }) => {
     if (!idList) {
         idList = itemList;
     }
@@ -10,18 +10,23 @@ const CheckboxGroupWithToggle = ({ itemList, idList, groupName, handleUpdate, fo
         throw new Error("itemList and idList must be the same length");
     }
 
-    const selectedIds = formData[groupName] || [];
-    const allSelected = idList.every(id => selectedIds.includes(id));
+    const allSelected = idList.every(id => selected.has(id));
 
     
-    const handleToggleCheckboxGroup = (event) => {
-      const nowAllSelected = !allSelected
+    const handleToggleCheckboxGroup = () => {
+      const nowAllSelected = !allSelected;
 
-      setFormData(prev => ({
-        ...prev,
-        [groupName]: nowAllSelected ? idList : null
-      }));
+      setSelected((prev) => {
+        const newSelected = new Set(prev);
 
+        if (nowAllSelected) {
+          idList.forEach(id => newSelected.add(id));
+        } else {
+          idList.forEach(id => newSelected.delete(id));
+        }
+
+        return newSelected;
+      });
     };
 
 
@@ -34,9 +39,8 @@ const CheckboxGroupWithToggle = ({ itemList, idList, groupName, handleUpdate, fo
           <CheckboxGroup 
             itemList={itemList} 
             idList={idList} 
-            handleUpdate={handleUpdate}
-            formData={formData}
-            groupName={groupName}
+            selected={selected}
+            setSelected={setSelected}
           />
       </FormGroup>
     )

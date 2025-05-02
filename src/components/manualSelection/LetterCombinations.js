@@ -4,7 +4,7 @@ import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style'
 import { Link } from 'react-router-dom';
 
-const LetterCombinations = ({handleUpdate, formData, setFormData}) => {
+const LetterCombinations = ({selected, setSelected}) => {
     return (
         <Box>
             <Typography variant='h2'>Letter Combinations</Typography>
@@ -13,9 +13,8 @@ const LetterCombinations = ({handleUpdate, formData, setFormData}) => {
                     <CheckboxGroupWithToggle
                         groupName={groupName}
                         itemList={letterCombinationSets[groupName]}
-                        handleUpdate={handleUpdate}
-                        formData={formData}
-                        setFormData={setFormData}
+                        selected={selected}
+                        setSelected={setSelected}
                     />
                 </Box>
             ))}

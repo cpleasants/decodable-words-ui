@@ -4,7 +4,7 @@ import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
 
-const Letters = ({handleUpdate, formData, setFormData}) => {
+const Letters = ({selected, setSelected}) => {
     return (
       <Box>
           <Typography variant="h2">Letter Sets</Typography>
@@ -14,9 +14,8 @@ const Letters = ({handleUpdate, formData, setFormData}) => {
                         groupName={groupName}
                         itemList={letterSets[groupName]}
                         idList={letterSets[groupName].map(l => `l_${l}`)}
-                        handleUpdate={handleUpdate}
-                        formData={formData}
-                        setFormData={setFormData}
+                        selected={selected}
+                        setSelected={setSelected}
                     />
               </Box>
           ))}

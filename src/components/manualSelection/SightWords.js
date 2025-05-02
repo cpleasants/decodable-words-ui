@@ -4,7 +4,7 @@ import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
 
-const SightWords = ({handleUpdate, formData, setFormData, handleComplete}) => {
+const SightWords = ({ selected, setSelected }) => {
     return (
         <Box>
             <Typography variant='h2'>Sight Words</Typography>
@@ -13,15 +13,14 @@ const SightWords = ({handleUpdate, formData, setFormData, handleComplete}) => {
                     <CheckboxGroupWithToggle
                         groupName={groupName}
                         itemList={sightWordSets[groupName]}
-                        handleUpdate={handleUpdate}
-                        formData={formData}
-                        setFormData={setFormData}
+                        selected={selected}
+                        setSelected={setSelected}
                     />
                 </Box>
             ))}
             <FloatingFooter>
               <Button  variant="contained" component={Link} to="/manual-selection/other-parameters">Previous</Button>
-              <Button  variant="contained" onClick={handleComplete} component={Link} to="/review-and-submit">Review</Button>
+              <Button  variant="contained" component={Link} to="/review-and-submit">Review</Button>
             </FloatingFooter>
         </Box>
     )
