@@ -1,15 +1,27 @@
-import { Button, Box, Table, TableRow, TableCell, Typography } from '@mui/material';
+import { Button, Box, Table, TableRow, TableCell, Dialog, DialogContent, DialogActions } from '@mui/material';
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { phonemes, sightWordSets, letterSets, letterCombinationSets, wordPatterns, otherParameters } from "../constants";
 import FloatingFooter from './common/styles/floatingFooter.style';
+import LetterCombinations from './manualSelection/LetterCombinations';
+import SightWords from './manualSelection/SightWords';
+import WordPatterns from './manualSelection/WordPatterns';
+import Letters from './manualSelection/Letters';
+import OtherParameters from './manualSelection/OtherParameters';
 
-const ReviewAndSubmit = ({selected, setApiResponse}) => {
-
-  const [ loading, setLoading ] = useState(false)
-
+const ReviewAndSubmit = ({selected, setSelected, setApiResponse}) => {
+  const [loading, setLoading] = useState(false);
+  const [openDialog, setOpenDialog] = useState(null);
   const navigate = useNavigate();
     
+  const handleOpenDialog = (dialogName) => {
+    setOpenDialog(dialogName);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(null);
+  };
+
   const generateRequest = () => {
     return {
       "hard_consonants" : phonemes["hard_consonants"].filter(s => selected.has(`l_${s}`)),
@@ -64,43 +76,76 @@ const ReviewAndSubmit = ({selected, setApiResponse}) => {
     }
   }
 
+  const componentMap = {
+    "wordPatterns" : WordPatterns,
+    "letters" : Letters,
+    "letterCombinations" : LetterCombinations,
+    "otherParameters" : OtherParameters,
+    "sightWords" : SightWords
+  }
+
+
+  const renderEditDialog = () => {
+    if (!openDialog) return null;
+    const Component = componentMap[openDialog];
+    return (
+      <Dialog open={true} onClose={handleCloseDialog} maxWidth="md" fullWidth>
+        <DialogContent>
+          <Component selected={selected} setSelected={setSelected} includeFooter={false} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Close</Button>
+        </DialogActions>
+      </Dialog>
+    );
+  };
+
   return (
     <Box>
-      {/* {selected.join(', ')} */}
       <Table>
         <TableRow>
           <TableCell><strong>Word Patterns</strong></TableCell>
           <TableCell>{Object.keys(wordPatterns).filter(k => selected.has(wordPatterns[k])).join(', ')}</TableCell>
-          <TableCell><Button component={Link} to="/manual-selection/word-patterns">Edit</Button></TableCell>
+          <TableCell>
+            <Button variant="outlined" onClick={() => handleOpenDialog('wordPatterns')}>Edit</Button>
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell><strong>Letters</strong></TableCell>
           <TableCell>{Object.values(letterSets).flat().filter(s => selected.has(`l_${s}`)).join(', ')}</TableCell>
-          <TableCell><Button component={Link} to="/manual-selection/letters">Edit</Button></TableCell>
+          <TableCell>
+            <Button variant="outlined" onClick={() => handleOpenDialog('letters')}>Edit</Button>
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell><strong>Letter Combinations</strong></TableCell>
           <TableCell>{Object.values(letterCombinationSets).flat().filter(w => selected.has(w)).join(', ')}</TableCell>
-          <TableCell><Button component={Link} to="/manual-selection/letter-combinations">Edit</Button></TableCell>
+          <TableCell>
+            <Button variant="outlined" onClick={() => handleOpenDialog('letterCombinations')}>Edit</Button>
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell><strong>Other Parameters</strong></TableCell>
           <TableCell>{Object.keys(otherParameters).filter(k => selected.has(otherParameters[k])).join(', ')}</TableCell>
-          <TableCell><Button component={Link} to="/manual-selection/other-parameters">Edit</Button></TableCell>
+          <TableCell>
+            <Button variant="outlined" onClick={() => handleOpenDialog('otherParameters')}>Edit</Button>
+          </TableCell>
         </TableRow>
         <TableRow>
           <TableCell><strong>Sight Words</strong></TableCell>
           <TableCell>{Object.values(sightWordSets).flat().filter(w => selected.has(w)).join(', ')}</TableCell>
-          <TableCell><Button component={Link} to="/manual-selection/sight-words">Edit</Button></TableCell>
+          <TableCell>
+            <Button variant="outlined" onClick={() => handleOpenDialog('sightWords')}>Edit</Button>
+          </TableCell>
         </TableRow>
       </Table>
+      {renderEditDialog()}
       <FloatingFooter>
-        <Button variant="contained" component={Link} to="/manual-selection">Edit</Button>
+        <Button variant="contained" component={Link} to="/manual-selection">Back</Button>
         <Button loading={loading} variant="contained" onClick={handleSubmit}>Submit</Button>
       </FloatingFooter>
     </Box>
-    
-  )
-}
+  );
+};
 
 export default ReviewAndSubmit;

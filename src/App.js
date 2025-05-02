@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<IntroPage />} />
         <Route path="/by-level" element={<GuidedSelectionContainer setSelected={setSelected} />} />
         <Route path="/manual-selection/*" element={<ManualSelectionsContainer selected={selected} setSelected={setSelected} />} />
-        <Route path="/review-and-submit" element={<ReviewAndSubmit selected={selected} setApiResponse={setApiResponse}/>} />
+        <Route path="/review-and-submit" element={<ReviewAndSubmit selected={selected} setSelected={setSelected} setApiResponse={setApiResponse}/>} />
         <Route path="/response" element={<ResponseDisplay apiResponse={apiResponse}/>}/>
         <Route path="*" element={<div>Page Not Found</div>} />
       </Routes>

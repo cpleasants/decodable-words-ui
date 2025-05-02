@@ -4,7 +4,7 @@ import FloatingFooter from '../common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
 import { wordPatterns } from '../../constants'
 
-const WordPatterns = ({selected, setSelected}) => {
+const WordPatterns = ({selected, setSelected, includeFooter = true}) => {
 
     return (
         <div>
@@ -14,9 +14,11 @@ const WordPatterns = ({selected, setSelected}) => {
             selected={selected}
             setSelected={setSelected}
             />
-            <FloatingFooter>
-              <Button  variant="contained" component={Link} to="/manual-selection/letters">Next</Button>
-            </FloatingFooter>
+            {includeFooter && (
+              <FloatingFooter>
+                <Button variant="contained" component={Link} to="/manual-selection/letters">Next</Button>
+              </FloatingFooter>
+            )}
         </div>
     )
 }

@@ -4,7 +4,7 @@ import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style'
 import { Link } from 'react-router-dom';
 
-const LetterCombinations = ({selected, setSelected}) => {
+const LetterCombinations = ({selected, setSelected, includeFooter = true}) => {
     return (
         <Box>
             <Typography variant='h2'>Letter Combinations</Typography>
@@ -18,10 +18,12 @@ const LetterCombinations = ({selected, setSelected}) => {
                     />
                 </Box>
             ))}
-            <FloatingFooter>
-              <Button  variant="contained" component={Link} to="/manual-selection/letters">Previous</Button>
-              <Button  variant="contained" component={Link} to="/manual-selection/other-parameters">Next</Button>
-            </FloatingFooter>
+            {includeFooter && (
+              <FloatingFooter>
+                <Button  variant="contained" component={Link} to="/manual-selection/letters">Previous</Button>
+                <Button  variant="contained" component={Link} to="/manual-selection/other-parameters">Next</Button>
+              </FloatingFooter>
+            )}
         </Box>
     )
 }
