@@ -13,7 +13,7 @@ import OtherParameters from './manualSelection/OtherParameters';
 interface ReviewAndSubmitProps {
   selected: Set<string>;
   setSelected: (selected: Set<string>) => void;
-  setApiResponse: (response: any) => void;
+  setApiResponse: (response: any) => void; // TODO: should the response by `any` or should it be something more strict?
 }
 
 const ReviewAndSubmit: React.FC<ReviewAndSubmitProps> = ({selected, setSelected, setApiResponse}) => {
@@ -83,7 +83,7 @@ const ReviewAndSubmit: React.FC<ReviewAndSubmitProps> = ({selected, setSelected,
     }
   }
 
-  const componentMap: Record<string, React.FC<any>> = {
+  const componentMap: Record<string, React.FC<any>> = { // TODO: should/can I make sure that this is a component of the manual selection directory?
     "wordPatterns" : WordPatterns,
     "letters" : Letters,
     "letterCombinations" : LetterCombinations,

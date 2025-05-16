@@ -9,7 +9,7 @@ import ResponseDisplay from './components/ResponseDisplay'
 
 const App: React.FC = () => {
   const [ selected, setSelected ] = useState<Set<string>>(new Set([]))
-  const [apiResponse, setApiResponse] = useState<any>(null);
+  const [apiResponse, setApiResponse] = useState<any>(null); // TODO: should this be <any>? Or is there a type I can/should use to more strictly enforce what the response should be? Like Record<any, any> | null? Or something?
 
   return (
     <Box sx={{ padding: 2 }}>
