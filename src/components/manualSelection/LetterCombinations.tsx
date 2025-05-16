@@ -1,17 +1,12 @@
 import React from 'react';
+import ManualSelectionComponentProps from './ManualSelectionComponentProps';
 import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithToggle';
 import letterCombinationSets from '../../constants/letterCombinationSets';
 import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style'
 import { Link } from 'react-router-dom';
 
-interface LetterCombinationsProps {
-  selected: Set<string>;
-  setSelected: (selected: Set<string>) => void;
-  includeFooter?: boolean;
-}
-
-const LetterCombinations: React.FC<LetterCombinationsProps> = ({selected, setSelected, includeFooter = true}) => {
+const LetterCombinations: React.FC<ManualSelectionComponentProps> = ({selected, setSelected, includeFooter = true}) => {
     return (
         <Box>
             <Typography variant='h2'>Letter Combinations</Typography>
