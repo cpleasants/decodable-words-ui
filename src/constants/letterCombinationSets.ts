@@ -1,4 +1,4 @@
-const letterCombinationSets = {
+const letterCombinationSets: Record<string, string[]> = {
     "Common Digraphs": ['ck', 'sh', 'th', 'ch', 'wh', 'qu'],
 
     "Blends 1": ['bl-', 'cl-', 'fl-', 'gl-', 'pl-', 'sl-'],

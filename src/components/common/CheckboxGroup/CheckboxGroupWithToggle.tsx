@@ -1,7 +1,16 @@
+import React from 'react';
 import CheckboxGroup from "./CheckboxGroup";
 import { Switch, FormControlLabel, FormGroup } from "@mui/material";
 
-const CheckboxGroupWithToggle = ({ groupName, itemList, idList, selected, setSelected }) => {
+interface CheckboxGroupWithToggleProps {
+  groupName: string;
+  itemList: string[];
+  idList?: string[];
+  selected: Set<string>;
+  setSelected: (selected: Set<string>) => void;
+}
+
+const CheckboxGroupWithToggle: React.FC<CheckboxGroupWithToggleProps> = ({ groupName, itemList, idList, selected, setSelected }) => {
     if (!idList) {
         idList = itemList;
     }
@@ -46,4 +55,4 @@ const CheckboxGroupWithToggle = ({ groupName, itemList, idList, selected, setSel
     )
 }
 
-export default CheckboxGroupWithToggle
+export default CheckboxGroupWithToggle 

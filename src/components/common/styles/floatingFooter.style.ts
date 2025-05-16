@@ -13,4 +13,4 @@ const FloatingFooter = styled(Box)(({
     gap: "0.5rem"
 }))
 
-export default FloatingFooter
+export default FloatingFooter 

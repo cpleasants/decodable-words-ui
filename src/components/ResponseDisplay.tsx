@@ -3,7 +3,13 @@ import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from './common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
 
-const ResponseDisplay = ({ apiResponse }) => {
+interface ResponseDisplayProps {
+  apiResponse: {
+    filtered_words: string[];
+  } | null;
+}
+
+const ResponseDisplay: React.FC<ResponseDisplayProps> = ({ apiResponse }) => {
   return (
     <Box>
       <Typography variant="h4">Words List</Typography>
@@ -20,4 +26,4 @@ const ResponseDisplay = ({ apiResponse }) => {
   );
 };
 
-export default ResponseDisplay;
+export default ResponseDisplay; 

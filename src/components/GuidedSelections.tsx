@@ -6,12 +6,15 @@ import letterCombinationSets from '../constants/letterCombinationSets';
 import sightWordSets from '../constants/sightWordsSets';
 import { Link } from 'react-router-dom';
 
+interface GuidedSelectionProps {
+  setSelected: (selected: Set<string>) => void;
+}
 
-const GuidedSelection = ({ setSelected }) => {
-  const [ level, setLevel ] = useState(0)
-  const [ hoverLevel, setHoverLevel ] = useState(0)
+const GuidedSelection: React.FC<GuidedSelectionProps> = ({ setSelected }) => {
+  const [ level, setLevel ] = useState<number>(0)
+  const [ hoverLevel, setHoverLevel ] = useState<number>(0)
 
-  const levels = {
+  const levels: Record<number, string[]> = {
     1: [...letterSets["First Letters"].map(id => `l_${id}`), "vc", "cvc"],
     2: letterSets["Second Letters"].map(id => `l_${id}`),
     3: letterSets["Last Letters"].map(id => `l_${id}`),
@@ -30,7 +33,7 @@ const GuidedSelection = ({ setSelected }) => {
   }
 
   const handleSubmit = () => {
-    const ids = new Set([]);
+    const ids = new Set<string>([]);
     for (let i = 1; i <= level; i++) {
         levels[i].forEach(item => ids.add(item))
     }
@@ -46,7 +49,7 @@ const GuidedSelection = ({ setSelected }) => {
     (('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
 
 
-  const createLevelButton = (thisLevel, title, contentsList) => (
+  const createLevelButton = (thisLevel: number, title: string, contentsList: React.ReactNode[]) => (
     <ToggleButton 
       key={thisLevel} 
       value={thisLevel}
@@ -127,7 +130,6 @@ const GuidedSelection = ({ setSelected }) => {
       </FloatingFooter>
     </Box>
   );
-
 }
 
-export default GuidedSelection
+export default GuidedSelection 
