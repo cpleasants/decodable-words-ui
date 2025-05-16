@@ -1,10 +1,12 @@
+import React from 'react';
+import ManualSelectionComponentProps from './ManualSelectionComponentProps';
 import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithToggle';
 import letterSets from '../../constants/letterSets';
 import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
 
-const Letters = ({selected, setSelected, includeFooter = true}) => {
+const Letters: React.FC<ManualSelectionComponentProps> = ({selected, setSelected, includeFooter = true}) => {
     return (
       <Box>
           <Typography variant="h2">Letter Sets</Typography>
@@ -29,4 +31,4 @@ const Letters = ({selected, setSelected, includeFooter = true}) => {
   )
 }
 
-export default Letters;
+export default Letters; 

@@ -1,7 +1,8 @@
+import React from 'react';
 import { Box, Typography, Stack, Button } from '@mui/material'; 
 import { Link } from 'react-router-dom';
 
-const IntroPage = () => {
+const IntroPage: React.FC = () => {
   return (
     <Box>
       <Typography variant="h2">Welcome to the Word Generator</Typography>
@@ -18,4 +19,4 @@ const IntroPage = () => {
   )
 }
 
-export default IntroPage;
+export default IntroPage; 

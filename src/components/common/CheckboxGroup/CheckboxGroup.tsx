@@ -1,7 +1,15 @@
+import React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-const CheckboxGroup = ({ itemList, idList, selected, setSelected }) => {
+interface CheckboxGroupProps {
+  itemList: string[];
+  idList?: string[];
+  selected: Set<string>;
+  setSelected: React.Dispatch<React.SetStateAction<Set<string>>>;
+}
+
+const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ itemList, idList, selected, setSelected }) => {
     // if only an itemList is provided, automatically generate idList
     if (!idList) {
         idList = itemList;
@@ -11,17 +19,16 @@ const CheckboxGroup = ({ itemList, idList, selected, setSelected }) => {
         throw new Error("itemList and idList must be the same length");
     }
 
-    const handleUpdate = (id) => {
+    const handleUpdate = (id: string) => {
       console.log(selected)
       console.log(id)
       // Remove from selected if it's already selected, or add if it isn't
-      setSelected((prev) => {
-        const newSelected = new Set(prev);
+      setSelected((prev:Set<string>) => {
+        const newSelected:Set<string> = new Set(prev);
         newSelected.has(id) ? newSelected.delete(id) : newSelected.add(id)
         return newSelected;
       })
     }
-
 
     return (
       <ToggleButtonGroup
@@ -41,4 +48,4 @@ const CheckboxGroup = ({ itemList, idList, selected, setSelected }) => {
     )
 }
 
-export default CheckboxGroup;
+export default CheckboxGroup; 

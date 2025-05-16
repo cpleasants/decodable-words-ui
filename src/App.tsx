@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Box } from '@mui/material';
@@ -8,10 +7,9 @@ import IntroPage from './components/IntroPage'
 import ReviewAndSubmit from './components/ReviewAndSubmit';
 import ResponseDisplay from './components/ResponseDisplay'
 
-function App() {
-  const [ selected, setSelected ] = useState(new Set([]))
-  const [apiResponse, setApiResponse] = useState(null);
-
+const App: React.FC = () => {
+  const [ selected, setSelected ] = useState<Set<string>>(new Set([]))
+  const [apiResponse, setApiResponse] = useState<any>(null); // TODO: should this be <any>? Or is there a type I can/should use to more strictly enforce what the response should be? Like Record<any, any> | null? Or something?
 
   return (
     <Box sx={{ padding: 2 }}>
@@ -27,4 +25,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 

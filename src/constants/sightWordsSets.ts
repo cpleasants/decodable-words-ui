@@ -1,4 +1,4 @@
-const sightWordSets = {
+const sightWordSets: Record<string, string[]> = {
     "Pre-K" : [
         "the", "to", "and", "a", "I", "you", "it", "in", "said", "for", 
         "up", "look", "is", "go", "we", "little", "down", "can", "see", 
@@ -25,7 +25,7 @@ const sightWordSets = {
     ],
     
     "Second Grade" : [
-        "would", "very", "your", "its", "around", "don’t", "right", "green", "their", "call", 
+        "would", "very", "your", "its", "around", "don't", "right", "green", "their", "call", 
         "sleep", "five", "wash", "or", "before", "been", "off", "cold", "tell", "work", 
         "first", "does", "goes", "write", "always", "made", "gave", "us", "buy", "those", 
         "use", "fast", "pull", "both", "sit", "which", "read", "why", "found", "because", 
@@ -39,6 +39,6 @@ const sightWordSets = {
         "small", "own", "show", "hot", "far", "draw", "clean", "grow", "together", "shall", 
         "laugh"
     ]
-}
+};
 
-export default sightWordSets
+export default sightWordSets;

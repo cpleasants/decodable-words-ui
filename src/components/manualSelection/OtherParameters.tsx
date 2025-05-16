@@ -1,10 +1,12 @@
+import React from 'react';
+import ManualSelectionComponentProps from './ManualSelectionComponentProps';
 import CheckboxGroup from "../common/CheckboxGroup/CheckboxGroup"
 import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
 import { otherParameters } from '../../constants'
 
-const OtherParameters = ({selected, setSelected, includeFooter = true}) => {
+const OtherParameters: React.FC<ManualSelectionComponentProps> = ({selected, setSelected, includeFooter = true}) => {
     return (
         <Box>
             <Typography variant='h2'>Other Parameters</Typography>
@@ -24,4 +26,4 @@ const OtherParameters = ({selected, setSelected, includeFooter = true}) => {
     )
 }
 
-export default OtherParameters
+export default OtherParameters 

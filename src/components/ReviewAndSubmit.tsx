@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Box, Table, TableRow, TableCell, Dialog, DialogContent, DialogActions, Typography, TableBody } from '@mui/material';
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,12 +10,18 @@ import WordPatterns from './manualSelection/WordPatterns';
 import Letters from './manualSelection/Letters';
 import OtherParameters from './manualSelection/OtherParameters';
 
-const ReviewAndSubmit = ({selected, setSelected, setApiResponse}) => {
+interface ReviewAndSubmitProps {
+  selected: Set<string>;
+  setSelected: React.Dispatch<React.SetStateAction<Set<string>>>;
+  setApiResponse: React.Dispatch<React.SetStateAction<any>>; // TODO: should the response by `any` or should it be something more strict?
+}
+
+const ReviewAndSubmit: React.FC<ReviewAndSubmitProps> = ({selected, setSelected, setApiResponse}) => {
   const [loading, setLoading] = useState(false);
-  const [openDialog, setOpenDialog] = useState(null);
+  const [openDialog, setOpenDialog] = useState<string | null>(null);
   const navigate = useNavigate();
     
-  const handleOpenDialog = (dialogName) => {
+  const handleOpenDialog = (dialogName: string) => {
     setOpenDialog(dialogName);
   };
 
@@ -50,7 +57,7 @@ const ReviewAndSubmit = ({selected, setSelected, setApiResponse}) => {
 
   const data = generateRequest();    
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); // allows me to handle the <form >submission manually instead of going to default (which is redirect to URL)
 
     setLoading(true);
@@ -76,14 +83,13 @@ const ReviewAndSubmit = ({selected, setSelected, setApiResponse}) => {
     }
   }
 
-  const componentMap = {
+  const componentMap: Record<string, React.FC<any>> = { // TODO: should/can I make sure that this is a component of the manual selection directory?
     "wordPatterns" : WordPatterns,
     "letters" : Letters,
     "letterCombinations" : LetterCombinations,
     "otherParameters" : OtherParameters,
     "sightWords" : SightWords
   }
-
 
   const renderEditDialog = () => {
     if (!openDialog) return null;
@@ -151,4 +157,4 @@ const ReviewAndSubmit = ({selected, setSelected, setApiResponse}) => {
   );
 };
 
-export default ReviewAndSubmit;
+export default ReviewAndSubmit; 

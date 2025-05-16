@@ -1,10 +1,12 @@
+import React from 'react';
+import ManualSelectionComponentProps from './ManualSelectionComponentProps';
 import CheckboxGroupWithToggle from '../common/CheckboxGroup/CheckboxGroupWithToggle';
 import sightWordSets from '../../constants/sightWordsSets'
 import { Button, Box, Typography } from '@mui/material';
 import FloatingFooter from '../common/styles/floatingFooter.style';
 import { Link } from 'react-router-dom';
 
-const SightWords = ({ selected, setSelected, includeFooter = true }) => {
+const SightWords: React.FC<ManualSelectionComponentProps> = ({ selected, setSelected, includeFooter = true }) => {
     return (
         <Box>
             <Typography variant='h2'>Sight Words</Typography>
@@ -28,4 +30,4 @@ const SightWords = ({ selected, setSelected, includeFooter = true }) => {
     )
 }
 
-export default SightWords;
+export default SightWords; 

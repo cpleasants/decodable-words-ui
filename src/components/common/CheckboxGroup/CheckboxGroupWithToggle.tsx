@@ -1,16 +1,25 @@
+import React from 'react';
 import CheckboxGroup from "./CheckboxGroup";
 import { Switch, FormControlLabel, FormGroup } from "@mui/material";
 
-const CheckboxGroupWithToggle = ({ groupName, itemList, idList, selected, setSelected }) => {
+interface CheckboxGroupWithToggleProps {
+  groupName: string;
+  itemList: string[];
+  idList?: string[];
+  selected: Set<string>;
+  setSelected: React.Dispatch<React.SetStateAction<Set<string>>>;
+} // TODO: should I make this a common interface for the checkbox group with and without toggle? Only difference is this one has groupName. May be a way to combine them more efficiently to reduce redundancy.
+
+const CheckboxGroupWithToggle: React.FC<CheckboxGroupWithToggleProps> = ({ groupName, itemList, idList, selected, setSelected }) => {
     if (!idList) {
         idList = itemList;
     }
 
-    if (itemList.length !== idList.length) {
+    if (itemList.length !== idList!.length) {
         throw new Error("itemList and idList must be the same length");
     }
 
-    const allSelected = idList.every(id => selected.has(id));
+    const allSelected = idList!.every(id => selected.has(id));
 
     
     const handleToggleCheckboxGroup = () => {
@@ -20,9 +29,9 @@ const CheckboxGroupWithToggle = ({ groupName, itemList, idList, selected, setSel
         const newSelected = new Set(prev);
 
         if (nowAllSelected) {
-          idList.forEach(id => newSelected.add(id));
+          idList!.forEach(id => newSelected.add(id));
         } else {
-          idList.forEach(id => newSelected.delete(id));
+          idList!.forEach(id => newSelected.delete(id));
         }
 
         return newSelected;
@@ -38,7 +47,7 @@ const CheckboxGroupWithToggle = ({ groupName, itemList, idList, selected, setSel
         />
           <CheckboxGroup 
             itemList={itemList} 
-            idList={idList} 
+            idList={idList!} 
             selected={selected}
             setSelected={setSelected}
           />
@@ -46,4 +55,4 @@ const CheckboxGroupWithToggle = ({ groupName, itemList, idList, selected, setSel
     )
 }
 
-export default CheckboxGroupWithToggle
+export default CheckboxGroupWithToggle 
