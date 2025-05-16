@@ -8,7 +8,7 @@ interface CheckboxGroupWithToggleProps {
   idList?: string[];
   selected: Set<string>;
   setSelected: (selected: Set<string>) => void;
-}
+} // TODO: should I make this a common interface for the checkbox group with and without toggle? Only difference is this one has groupName. May be a way to combine them more efficiently to reduce redundancy.
 
 const CheckboxGroupWithToggle: React.FC<CheckboxGroupWithToggleProps> = ({ groupName, itemList, idList, selected, setSelected }) => {
     if (!idList) {
