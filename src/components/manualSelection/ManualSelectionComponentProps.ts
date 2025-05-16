@@ -1,6 +1,6 @@
 interface ManualSelectionComponentProps {
   selected: Set<string>;
-  setSelected: (selected: Set<string>) => void;
+  setSelected: React.Dispatch<React.SetStateAction<Set<string>>>;
   includeFooter?: boolean;
 }
 

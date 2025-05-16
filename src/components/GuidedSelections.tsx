@@ -7,7 +7,7 @@ import sightWordSets from '../constants/sightWordsSets';
 import { Link } from 'react-router-dom';
 
 interface GuidedSelectionProps {
-  setSelected: (selected: Set<string>) => void;
+  setSelected: React.Dispatch<React.SetStateAction<Set<string>>>;
 }
 
 const GuidedSelection: React.FC<GuidedSelectionProps> = ({ setSelected }) => {
@@ -68,7 +68,7 @@ const GuidedSelection: React.FC<GuidedSelectionProps> = ({ setSelected }) => {
     >
       <Typography variant="h5">{title}</Typography>
       {contentsList.map((content, i) => {
-        return <Typography key={title[i]} variant="p">{content}</Typography>
+        return <Typography key={title[i]} variant="body1">{content}</Typography>
       })}
     </ToggleButton>
   );

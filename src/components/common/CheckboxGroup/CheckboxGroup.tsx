@@ -6,7 +6,7 @@ interface CheckboxGroupProps {
   itemList: string[];
   idList?: string[];
   selected: Set<string>;
-  setSelected: (selected: Set<string>) => void;
+  setSelected: React.Dispatch<React.SetStateAction<Set<string>>>;
 }
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ itemList, idList, selected, setSelected }) => {

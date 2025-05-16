@@ -12,8 +12,8 @@ import OtherParameters from './manualSelection/OtherParameters';
 
 interface ReviewAndSubmitProps {
   selected: Set<string>;
-  setSelected: (selected: Set<string>) => void;
-  setApiResponse: (response: any) => void; // TODO: should the response by `any` or should it be something more strict?
+  setSelected: React.Dispatch<React.SetStateAction<Set<string>>>;
+  setApiResponse: React.Dispatch<React.SetStateAction<any>>; // TODO: should the response by `any` or should it be something more strict?
 }
 
 const ReviewAndSubmit: React.FC<ReviewAndSubmitProps> = ({selected, setSelected, setApiResponse}) => {
